@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -924.8062500000016,
-    "scrollLeft": -358.4000000000009,
+    "scrollTop": -1106.4062499999995,
+    "scrollLeft": -512,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -252,13 +252,36 @@
               "widthDefault": 60
             },
             "id": "bc65e1d5-3055-4764-ae11-ac832471ac75"
+          },
+          {
+            "name": "all_notification_bool",
+            "comment": "",
+            "dataType": "bool",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 128.7119140625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "be3f2c04-f728-4b9e-81ea-fbb776898890"
           }
         ],
         "ui": {
           "active": false,
           "left": 0,
           "top": 864.4225,
-          "zIndex": 18,
+          "zIndex": 40,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2119,12 +2142,12 @@
       },
       {
         "name": "notifications",
-        "comment": "",
+        "comment": "通知の説明と種類",
         "columns": [
           {
-            "name": "name",
+            "name": "description",
             "comment": "",
-            "dataType": "",
+            "dataType": "text",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -2137,7 +2160,7 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 60,
+              "widthName": 71.037109375,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -2192,19 +2215,19 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 1236.8,
           "top": 1706.4063,
-          "zIndex": 20,
+          "zIndex": 53,
           "widthName": 78.248046875,
-          "widthComment": 60
+          "widthComment": 106
         },
         "visible": true,
         "id": "3a97249c-dc0f-4feb-a6e3-53068c901e2a"
       },
       {
         "name": "notification_types",
-        "comment": "",
+        "comment": "トレード、マルチ、フレンド",
         "columns": [
           {
             "name": "id",
@@ -2254,12 +2277,12 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1552.8,
           "top": 1482.0063,
-          "zIndex": 27,
+          "zIndex": 42,
           "widthName": 113.96630859375,
-          "widthComment": 60
+          "widthComment": 120
         },
         "visible": true,
         "id": "2422459b-3fa1-40e5-a0ca-420b4cae5b1f"
@@ -2333,8 +2356,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 112.4537353515625,
-          "y": 1117.9225000000001,
+          "x": 116.8177490234375,
+          "y": 1138.4225000000001,
           "direction": "bottom"
         },
         "end": {
@@ -2671,7 +2694,7 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 224.907470703125,
+          "x": 233.635498046875,
           "y": 864.4225,
           "direction": "top"
         },
@@ -2749,8 +2772,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 449.81494140625,
-          "y": 906.6725,
+          "x": 467.27099609375,
+          "y": 910.0891666666668,
           "direction": "right"
         },
         "end": {
@@ -2775,8 +2798,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 449.81494140625,
-          "y": 991.1725,
+          "x": 467.27099609375,
+          "y": 1001.4225000000001,
           "direction": "right"
         },
         "end": {
@@ -2827,8 +2850,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 337.3612060546875,
-          "y": 1117.9225000000001,
+          "x": 350.4532470703125,
+          "y": 1138.4225000000001,
           "direction": "bottom"
         },
         "end": {
@@ -2879,8 +2902,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 449.81494140625,
-          "y": 1075.6725000000001,
+          "x": 467.27099609375,
+          "y": 1092.7558333333334,
           "direction": "right"
         },
         "end": {
