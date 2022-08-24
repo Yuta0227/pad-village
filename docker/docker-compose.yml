@@ -17,6 +17,8 @@ services:
   app:
     build:
       context: ./app
+    ports:
+      - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
     volumes:
       - ../src:/work/backend
     depends_on: ["db"]
