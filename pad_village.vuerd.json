@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -673.6062500000005,
-    "scrollLeft": -105.6000000000002,
+    "scrollTop": -740.0000000000032,
+    "scrollLeft": -1243.2,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -140,7 +140,7 @@
           },
           {
             "name": "pad_id",
-            "comment": "nullable",
+            "comment": "",
             "dataType": "int ",
             "default": "",
             "option": {
@@ -231,7 +231,7 @@
             "id": "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           },
           {
-            "name": "admin_bool",
+            "name": "is_admin",
             "comment": "",
             "dataType": "bool",
             "default": "null",
@@ -246,7 +246,7 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 75.98193359375,
+              "widthName": 60,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -280,75 +280,13 @@
         "ui": {
           "active": false,
           "left": 0,
-          "top": 864.4225,
-          "zIndex": 45,
+          "top": 794.0225,
+          "zIndex": 33,
           "widthName": 60,
           "widthComment": 60
         },
         "visible": true,
         "id": "1d31d037-834b-4da5-aa9a-78c2d1c6ebdb"
-      },
-      {
-        "name": "boards",
-        "comment": "掲示板",
-        "columns": [
-          {
-            "name": "name",
-            "comment": "",
-            "dataType": "string",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "fb897906-d05d-4f78-91d6-4557d5b0495b"
-          },
-          {
-            "name": "id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": true,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "04ca34c6-c3fc-46da-8221-3e1efcabe32a"
-          }
-        ],
-        "ui": {
-          "active": false,
-          "left": 0,
-          "top": 0,
-          "zIndex": 2,
-          "widthName": 60,
-          "widthComment": 60
-        },
-        "visible": true,
-        "id": "3f9dc463-300f-4bd6-985f-4036fbc1349e"
       },
       {
         "name": "chats",
@@ -404,8 +342,8 @@
         "ui": {
           "active": false,
           "left": 0,
-          "top": 1890,
-          "zIndex": 1,
+          "top": 1886.4444,
+          "zIndex": 19,
           "widthName": 60,
           "widthComment": 80
         },
@@ -413,8 +351,8 @@
         "id": "ab89bc79-8987-4352-96b3-9846f92e5293"
       },
       {
-        "name": "board_posts",
-        "comment": "掲示板の投稿場所と時間を管理",
+        "name": "trade_board_posts",
+        "comment": "トレード掲示板の投稿場所と時間を管理",
         "columns": [
           {
             "name": "updated_at",
@@ -461,29 +399,6 @@
               "widthDefault": 60
             },
             "id": "49262bb0-6531-4704-8776-1116de6cb143"
-          },
-          {
-            "name": "board_id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "952705d4-607a-4fd3-afd9-621e287ca289"
           },
           {
             "name": "id",
@@ -581,9 +496,9 @@
         "ui": {
           "active": false,
           "left": 0,
-          "top": 245.8669,
-          "zIndex": 5,
-          "widthName": 80.025390625,
+          "top": 0,
+          "zIndex": 8,
+          "widthName": 121.16455078125,
           "widthComment": 120
         },
         "visible": true,
@@ -757,9 +672,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 9,
-          "top": 1596.5,
-          "zIndex": 6,
+          "left": 0,
+          "top": 1488.0552,
+          "zIndex": 18,
           "widthName": 70.6689453125,
           "widthComment": 120
         },
@@ -771,7 +686,7 @@
         "comment": "トレードの求むが管理されている",
         "columns": [
           {
-            "name": "board_post_id",
+            "name": "trade_board_post_id",
             "comment": "",
             "dataType": "int",
             "default": "",
@@ -786,7 +701,7 @@
               "pk": false,
               "fk": true,
               "pfk": false,
-              "widthName": 92.8349609375,
+              "widthName": 133.97412109375,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -867,7 +782,7 @@
           "active": false,
           "left": 576.4,
           "top": 0,
-          "zIndex": 8,
+          "zIndex": 11,
           "widthName": 132.43798828125,
           "widthComment": 120
         },
@@ -879,7 +794,7 @@
         "comment": "トレードの出すが管理されている",
         "columns": [
           {
-            "name": "board_post_id",
+            "name": "trade_board_post_id",
             "comment": "",
             "dataType": "int",
             "default": "",
@@ -894,7 +809,7 @@
               "pk": false,
               "fk": true,
               "pfk": false,
-              "widthName": 92.8349609375,
+              "widthName": 133.97412109375,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -983,11 +898,11 @@
         "id": "870dd193-d3f2-4eac-ace2-16a0c529a7c4"
       },
       {
-        "name": "board_post_pictures",
-        "comment": "掲示板の投稿の画像を管理",
+        "name": "trade_board_post_pictures",
+        "comment": "トレード掲示板の投稿の画像を管理",
         "columns": [
           {
-            "name": "board_post_id",
+            "name": "trade_board_post_id",
             "comment": "",
             "dataType": "int",
             "default": "",
@@ -1002,7 +917,7 @@
               "pk": false,
               "fk": true,
               "pfk": false,
-              "widthName": 92.8349609375,
+              "widthName": 133.97412109375,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -1010,7 +925,7 @@
             "id": "7940f037-0125-4e78-b5d2-3f0bc76fd04a"
           },
           {
-            "name": "image",
+            "name": "image_url",
             "comment": "",
             "dataType": "",
             "default": "",
@@ -1025,7 +940,7 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 60,
+              "widthName": 65.4892578125,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -1058,10 +973,10 @@
         ],
         "ui": {
           "active": false,
-          "left": 598.6223,
-          "top": 870.5778,
-          "zIndex": 17,
-          "widthName": 131.7333984375,
+          "left": 573.7317,
+          "top": 656.3549,
+          "zIndex": 32,
+          "widthName": 172.87255859375,
           "widthComment": 120
         },
         "visible": true,
@@ -1122,7 +1037,7 @@
           "active": false,
           "left": 1653,
           "top": 924.6,
-          "zIndex": 14,
+          "zIndex": 2,
           "widthName": 60.97607421875,
           "widthComment": 120
         },
@@ -1155,29 +1070,6 @@
               "widthDefault": 60
             },
             "id": "7195df6e-1e6f-43f7-9a5c-ca2a68331c68"
-          },
-          {
-            "name": "board_post_id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 92.8349609375,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "abd70efc-6ac6-4bbf-bbe7-d3a4d6927f88"
           },
           {
             "name": "monster_id",
@@ -1247,13 +1139,36 @@
               "widthDefault": 60
             },
             "id": "fb80a8f6-4f21-4543-af3a-c0be02e06f78"
+          },
+          {
+            "name": "friend_board_post_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 137.38916015625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7adb1ba9-8c44-452b-ba84-e7273b6af29b"
           }
         ],
         "ui": {
           "active": false,
           "left": 571,
           "top": 307.8,
-          "zIndex": 10,
+          "zIndex": 12,
           "widthName": 135.85302734375,
           "widthComment": 120
         },
@@ -1286,29 +1201,6 @@
               "widthDefault": 60
             },
             "id": "81c0c5db-d9cc-4621-8fc4-28fa6176e748"
-          },
-          {
-            "name": "board_post_id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 92.8349609375,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "94913537-7b1c-4781-8a35-b16b99bb8886"
           },
           {
             "name": "monster_id",
@@ -1378,126 +1270,41 @@
               "widthDefault": 60
             },
             "id": "ff9fd409-ca4e-4111-b8de-ad23afa86cf3"
+          },
+          {
+            "name": "friend_board_post_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 137.38916015625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "4ee5b720-1111-458e-a11a-a73fa5127f8f"
           }
         ],
         "ui": {
           "active": false,
           "left": 571.2,
           "top": 480.4,
-          "zIndex": 11,
+          "zIndex": 13,
           "widthName": 114.08056640625,
           "widthComment": 120
         },
         "visible": true,
         "id": "3a5ce1d8-9b15-49c0-ac5e-ace839e0d51e"
-      },
-      {
-        "name": "multiplay_posts",
-        "comment": "マルチ用のテーブルあとでつくる",
-        "columns": [
-          {
-            "name": "id",
-            "comment": "auto_increment",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 102.03271484375,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "f62eed39-8fe6-4eca-9329-06aeddb8548a"
-          },
-          {
-            "name": "board_post_id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 92.8349609375,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "3b564ae8-4779-44d3-a5ea-f0f1473ea760"
-          },
-          {
-            "name": "dungeon_id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 76.41357421875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "1f0f98ee-68e9-4e49-9bfc-3fcd34bfa9c3"
-          },
-          {
-            "name": "multiplay_type_id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 115.05810546875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "13fe3d6e-663e-48d4-bdae-8a55ada11479"
-          }
-        ],
-        "ui": {
-          "active": false,
-          "left": 571,
-          "top": 654.8,
-          "zIndex": 12,
-          "widthName": 101.6328125,
-          "widthComment": 120
-        },
-        "visible": true,
-        "id": "2d60c063-7f89-4b2c-8f3f-88d791d50863"
       },
       {
         "name": "dungeons",
@@ -1575,9 +1382,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1368.4,
-          "top": 299.4,
-          "zIndex": 3,
+          "left": 1261.7327,
+          "top": 248.7328,
+          "zIndex": 22,
           "widthName": 63.60400390625,
           "widthComment": 120
         },
@@ -1639,7 +1446,7 @@
           "active": false,
           "left": 1368.8,
           "top": 453.0062,
-          "zIndex": 4,
+          "zIndex": 14,
           "widthName": 102.24853515625,
           "widthComment": 120
         },
@@ -1722,9 +1529,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 528.4,
-          "top": 1821.6062,
-          "zIndex": 7,
+          "left": 475.9555,
+          "top": 1834.9393,
+          "zIndex": 20,
           "widthName": 122.376953125,
           "widthComment": 120
         },
@@ -1832,7 +1639,7 @@
           "active": false,
           "left": 508.8,
           "top": 1090.4063,
-          "zIndex": 15,
+          "zIndex": 3,
           "widthName": 148.4658203125,
           "widthComment": 60
         },
@@ -1940,7 +1747,7 @@
           "active": false,
           "left": 512.2,
           "top": 1251.8,
-          "zIndex": 13,
+          "zIndex": 1,
           "widthName": 126.693359375,
           "widthComment": 60
         },
@@ -2071,7 +1878,7 @@
           "active": false,
           "left": 517.9557,
           "top": 1418.3555,
-          "zIndex": 16,
+          "zIndex": 4,
           "widthName": 151.880859375,
           "widthComment": 60
         },
@@ -2079,7 +1886,7 @@
         "id": "440ff870-28fd-484e-af32-e2a13fd8ff94"
       },
       {
-        "name": "notification_users",
+        "name": "notification_user",
         "comment": "",
         "columns": [
           {
@@ -2127,37 +1934,14 @@
               "widthDefault": 60
             },
             "id": "9940f213-fc64-4a08-9ee6-6f6a50823096"
-          },
-          {
-            "name": "notification_bool",
-            "comment": "",
-            "dataType": "bool",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 106.4951171875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "0bab1f88-1e06-4358-a470-ba5d8179f395"
           }
         ],
         "ui": {
           "active": false,
           "left": 1073.6445,
           "top": 1438.0004,
-          "zIndex": 28,
-          "widthName": 113.7060546875,
+          "zIndex": 24,
+          "widthName": 107.2314453125,
           "widthComment": 60
         },
         "visible": true,
@@ -2239,9 +2023,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1236.8,
-          "top": 1706.4063,
-          "zIndex": 21,
+          "left": 1035.0218,
+          "top": 1659.2948,
+          "zIndex": 7,
           "widthName": 78.248046875,
           "widthComment": 106
         },
@@ -2303,7 +2087,7 @@
           "active": false,
           "left": 1552.8,
           "top": 1482.0063,
-          "zIndex": 30,
+          "zIndex": 5,
           "widthName": 113.96630859375,
           "widthComment": 120
         },
@@ -2362,15 +2146,516 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1113.8,
           "top": 1040.2063,
-          "zIndex": 49,
+          "zIndex": 6,
           "widthName": 91.8193359375,
           "widthComment": 60
         },
         "visible": true,
         "id": "361fbf29-b255-4b43-8cb2-b5ad228efeba"
+      },
+      {
+        "name": "friend_board_posts",
+        "comment": "フレンド掲示板の投稿場所と時間を管理",
+        "columns": [
+          {
+            "name": "updated_at",
+            "comment": "",
+            "dataType": "timestamp",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 74.2744140625,
+              "widthComment": 60,
+              "widthDataType": 69.5263671875,
+              "widthDefault": 60
+            },
+            "id": "e6f16fc1-4a42-480f-87aa-d19ddab3ce5d"
+          },
+          {
+            "name": "created_at",
+            "comment": "",
+            "dataType": "timestamp",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 69.8818359375,
+              "widthComment": 60,
+              "widthDataType": 69.5263671875,
+              "widthDefault": 60
+            },
+            "id": "3d57a1a0-bc4e-4da1-b24f-480126417fbe"
+          },
+          {
+            "name": "description",
+            "comment": "nullable",
+            "dataType": "text",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 71.037109375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "378572ac-2003-4b49-8437-2a848d94c50f"
+          },
+          {
+            "name": "parent_friend_board_post_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 186.74853515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8dd3d066-74b0-40c4-8967-0ca4b28ee1d0"
+          },
+          {
+            "name": "user_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "d64d5329-e4f7-4f8e-9905-048c76eb84a2"
+          },
+          {
+            "name": "id",
+            "comment": "auto_increment",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 102.03271484375,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8138e659-684e-465d-9bca-aa49cb85f1c9"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 3.5556,
+          "top": 208.1837,
+          "zIndex": 21,
+          "widthName": 124.57958984375,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "85cbd549-c7a6-458d-a2c3-2b9ea5d746f7"
+      },
+      {
+        "name": "multiplay_board_posts",
+        "comment": "マルチ掲示板の投稿場所と時間を管理",
+        "columns": [
+          {
+            "name": "updated_at",
+            "comment": "",
+            "dataType": "timestamp",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 74.2744140625,
+              "widthComment": 60,
+              "widthDataType": 69.5263671875,
+              "widthDefault": 60
+            },
+            "id": "d7a6a9a7-e1ac-416b-84e2-4a4ff832266e"
+          },
+          {
+            "name": "created_at",
+            "comment": "",
+            "dataType": "timestamp",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 69.8818359375,
+              "widthComment": 60,
+              "widthDataType": 69.5263671875,
+              "widthDefault": 60
+            },
+            "id": "4457e0dc-49b5-40d3-87ea-7b6bfc20d5fb"
+          },
+          {
+            "name": "description",
+            "comment": "nullable",
+            "dataType": "text",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 71.037109375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "010c0a13-1d77-4177-89cc-cda79162d607"
+          },
+          {
+            "name": "parent_multiplay_board_post_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 208.32421875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "eb7778fd-b3dc-4369-b5f2-e30414381e16"
+          },
+          {
+            "name": "dungeon_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 76.41357421875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6810198b-0751-4332-9856-56c52ae2eb29"
+          },
+          {
+            "name": "multiplay_type_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 115.05810546875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b4f1fd51-f792-4a0c-9a03-eadbb18c6deb"
+          },
+          {
+            "name": "id",
+            "comment": "auto_increment",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 102.03271484375,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a170809b-9655-4484-82d0-bbf8ba13c6a4"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 0,
+          "top": 411.2889,
+          "zIndex": 23,
+          "widthName": 146.1552734375,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "212d7e87-071d-4471-8772-4830f58e98c0"
+      },
+      {
+        "name": "friend_board_post_pictures",
+        "comment": "フレンド掲示板の投稿の画像を管理",
+        "columns": [
+          {
+            "name": "image_url",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 65.4892578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2c6b7483-e737-406a-9f0d-a85beb3cb076"
+          },
+          {
+            "name": "id",
+            "comment": "auto_increment",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 102.03271484375,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "202d6524-efa1-4327-b49c-cf7428f2891a"
+          },
+          {
+            "name": "friend_board_post_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 137.38916015625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7c7c20e3-274d-4050-8655-b5468acc6a5c"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 572.9786,
+          "top": 784.5334,
+          "zIndex": 30,
+          "widthName": 176.28759765625,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "7ac2b1ee-22a6-411e-817e-b202bbd2b9c9"
+      },
+      {
+        "name": "multiplay_board_post_picture",
+        "comment": "マルチ掲示板の投稿の画像を管理",
+        "columns": [
+          {
+            "name": "image_url",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 65.4892578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "af76af84-3cb9-45ad-b8bc-5a8c6b5d934b"
+          },
+          {
+            "name": "id",
+            "comment": "auto_increment",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 102.03271484375,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a7edc5fc-48e7-4942-a7c0-9a849272c2cf"
+          },
+          {
+            "name": "multiplay_board_post_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 158.96484375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "775c92cd-08a5-4e69-b705-b38dab7feaf4"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 572.3561,
+          "top": 914.8448,
+          "zIndex": 28,
+          "widthName": 191.388671875,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "48d8f216-53bb-4a30-9434-6e7a76b3800f"
       }
     ],
     "indexes": []
@@ -2385,38 +2670,12 @@
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
-          "tableId": "3f9dc463-300f-4bd6-985f-4036fbc1349e",
-          "columnIds": [
-            "04ca34c6-c3fc-46da-8221-3e1efcabe32a"
-          ],
-          "x": 173.5,
-          "y": 110,
-          "direction": "bottom"
-        },
-        "end": {
-          "tableId": "b8a6911b-ea70-450a-b635-caae72bf9a40",
-          "columnIds": [
-            "952705d4-607a-4fd3-afd9-621e287ca289"
-          ],
-          "x": 249.3603515625,
-          "y": 245.8669,
-          "direction": "top"
-        },
-        "constraintName": "fk_boards_to_board_posts",
-        "visible": true,
-        "id": "5572e457-688b-4d0d-b09b-9c946741283d"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
           "tableId": "ab89bc79-8987-4352-96b3-9846f92e5293",
           "columnIds": [
             "42965fd7-a0d6-4451-bb39-8c68609189c6"
           ],
           "x": 173.5,
-          "y": 1890,
+          "y": 1886.4444,
           "direction": "top"
         },
         "end": {
@@ -2424,8 +2683,8 @@
           "columnIds": [
             "429184b0-409f-46e0-97a0-b45db4530b36"
           ],
-          "x": 223.68212890625,
-          "y": 1809,
+          "x": 214.68212890625,
+          "y": 1700.5552,
           "direction": "bottom"
         },
         "constraintName": "fk_chats_to_chat_posts",
@@ -2441,8 +2700,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 116.8177490234375,
-          "y": 1138.4225000000001,
+          "x": 233.635498046875,
+          "y": 1068.0225,
           "direction": "bottom"
         },
         "end": {
@@ -2450,8 +2709,8 @@
           "columnIds": [
             "675c0bf6-51d9-4197-bb98-b71eca5211ab"
           ],
-          "x": 223.68212890625,
-          "y": 1596.5,
+          "x": 214.68212890625,
+          "y": 1488.0552,
           "direction": "top"
         },
         "constraintName": "fk_users_to_chat_posts",
@@ -2460,7 +2719,7 @@
       },
       {
         "identification": false,
-        "relationshipType": "OneOnly",
+        "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "b8a6911b-ea70-450a-b635-caae72bf9a40",
@@ -2468,7 +2727,7 @@
             "ce7af9c7-6ed1-422c-84c0-2c22d46ea5d8"
           ],
           "x": 498.720703125,
-          "y": 394.6169,
+          "y": 48,
           "direction": "right"
         },
         "end": {
@@ -2494,7 +2753,7 @@
             "ce7af9c7-6ed1-422c-84c0-2c22d46ea5d8"
           ],
           "x": 498.720703125,
-          "y": 309.6169,
+          "y": 144,
           "direction": "right"
         },
         "end": {
@@ -2520,7 +2779,7 @@
             "ce7af9c7-6ed1-422c-84c0-2c22d46ea5d8"
           ],
           "x": 374.04052734375,
-          "y": 458.3669,
+          "y": 192,
           "direction": "bottom"
         },
         "end": {
@@ -2528,8 +2787,8 @@
           "columnIds": [
             "7940f037-0125-4e78-b5d2-3f0bc76fd04a"
           ],
-          "x": 598.6223,
-          "y": 935.8278,
+          "x": 573.7317,
+          "y": 721.6049,
           "direction": "left"
         },
         "constraintName": "fk_board_posts_to_board_post_pictures",
@@ -2554,7 +2813,7 @@
           "columnIds": [
             "3bfeb1b4-293d-4561-8c8b-820343afecca"
           ],
-          "x": 1013.53935546875,
+          "x": 1036.2068359375,
           "y": 230.5,
           "direction": "right"
         },
@@ -2580,39 +2839,13 @@
           "columnIds": [
             "399cb686-76a0-430b-83c2-d28f7659efa2"
           ],
-          "x": 1016.73935546875,
+          "x": 1039.4068359375,
           "y": 75.5,
           "direction": "right"
         },
         "constraintName": "fk_monsters_to_trade_requests",
         "visible": true,
         "id": "9d657037-b614-4225-8fe4-a3e01d0b4181"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "b8a6911b-ea70-450a-b635-caae72bf9a40",
-          "columnIds": [
-            "ce7af9c7-6ed1-422c-84c0-2c22d46ea5d8"
-          ],
-          "x": 498.720703125,
-          "y": 267.1169,
-          "direction": "right"
-        },
-        "end": {
-          "tableId": "a3113bf9-6f7b-41d3-82c5-727e87e3e80f",
-          "columnIds": [
-            "abd70efc-6ac6-4bbf-bbe7-d3a4d6927f88"
-          ],
-          "x": 571,
-          "y": 393.55,
-          "direction": "left"
-        },
-        "constraintName": "fk_board_posts_to_friend_request",
-        "visible": true,
-        "id": "9c982f44-63e5-4661-bcfc-29f4acb5e76d"
       },
       {
         "identification": false,
@@ -2632,39 +2865,13 @@
           "columnIds": [
             "8a75a51d-2dc7-41cd-8ab3-e2d91fe290bf"
           ],
-          "x": 1013.90380859375,
+          "x": 1037.421875,
           "y": 393.55,
           "direction": "right"
         },
         "constraintName": "fk_monsters_to_friend_request",
         "visible": true,
         "id": "ec956375-aea4-4160-9b4f-25ec5776c6b9"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "b8a6911b-ea70-450a-b635-caae72bf9a40",
-          "columnIds": [
-            "ce7af9c7-6ed1-422c-84c0-2c22d46ea5d8"
-          ],
-          "x": 498.720703125,
-          "y": 352.1169,
-          "direction": "right"
-        },
-        "end": {
-          "tableId": "3a5ce1d8-9b15-49c0-ac5e-ace839e0d51e",
-          "columnIds": [
-            "94913537-7b1c-4781-8a35-b16b99bb8886"
-          ],
-          "x": 571.2,
-          "y": 566.15,
-          "direction": "left"
-        },
-        "constraintName": "fk_board_posts_to_friend_gives",
-        "visible": true,
-        "id": "a01cc680-afaa-493d-bb9b-a3e89e7c878f"
       },
       {
         "identification": false,
@@ -2684,91 +2891,13 @@
           "columnIds": [
             "2906aaef-e4a4-4523-94b5-35c1af1ac799"
           ],
-          "x": 1014.10380859375,
+          "x": 1037.621875,
           "y": 566.15,
           "direction": "right"
         },
         "constraintName": "fk_monsters_to_friend_gives",
         "visible": true,
         "id": "8f5f2161-2392-4b6f-86e7-9ab748513b6f"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneOnly",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "b8a6911b-ea70-450a-b635-caae72bf9a40",
-          "columnIds": [
-            "ce7af9c7-6ed1-422c-84c0-2c22d46ea5d8"
-          ],
-          "x": 498.720703125,
-          "y": 437.1169,
-          "direction": "right"
-        },
-        "end": {
-          "tableId": "2d60c063-7f89-4b2c-8f3f-88d791d50863",
-          "columnIds": [
-            "3b564ae8-4779-44d3-a5ea-f0f1473ea760"
-          ],
-          "x": 571,
-          "y": 730.3,
-          "direction": "left"
-        },
-        "constraintName": "fk_board_posts_to_multiplays",
-        "visible": true,
-        "id": "a3f2e18a-74c3-4236-b808-4330cc02c37d"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "a45dc3e5-aeb3-4950-b1ad-4412243f3a19",
-          "columnIds": [
-            "38e27f9d-f83e-49a7-aac2-157c9520468b"
-          ],
-          "x": 1368.4,
-          "y": 364.65,
-          "direction": "left"
-        },
-        "end": {
-          "tableId": "2d60c063-7f89-4b2c-8f3f-88d791d50863",
-          "columnIds": [
-            "1f0f98ee-68e9-4e49-9bfc-3fcd34bfa9c3"
-          ],
-          "x": 1015.0908203125,
-          "y": 768.05,
-          "direction": "right"
-        },
-        "constraintName": "fk_dungeons_to_multiplays",
-        "visible": true,
-        "id": "6cb5f88c-efcf-4209-84bf-1e40d84ccfb5"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "d3d471a5-760c-4e7f-845a-72621c2835a2",
-          "columnIds": [
-            "d4b0c15b-18ae-4486-b41e-f93d7cb72865"
-          ],
-          "x": 1368.8,
-          "y": 508.0062,
-          "direction": "left"
-        },
-        "end": {
-          "tableId": "2d60c063-7f89-4b2c-8f3f-88d791d50863",
-          "columnIds": [
-            "13fe3d6e-663e-48d4-bdae-8a55ada11479"
-          ],
-          "x": 1015.0908203125,
-          "y": 692.55,
-          "direction": "right"
-        },
-        "constraintName": "fk_multiplay_types_to_multiplays",
-        "visible": true,
-        "id": "71e7cadb-a07e-4bb0-b148-2eb0d475d521"
       },
       {
         "identification": false,
@@ -2779,8 +2908,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 233.635498046875,
-          "y": 864.4225,
+          "x": 350.4532470703125,
+          "y": 794.0225,
           "direction": "top"
         },
         "end": {
@@ -2789,7 +2918,7 @@
             "e7bff59a-6f77-4c71-9e2e-65d9c45466c6"
           ],
           "x": 124.68017578125,
-          "y": 458.3669,
+          "y": 192,
           "direction": "bottom"
         },
         "constraintName": "fk_users_to_board_posts",
@@ -2805,8 +2934,8 @@
           "columnIds": [
             "8a8bf337-dbc2-4677-bb22-42bb6e30a33c"
           ],
-          "x": 438.3642578125,
-          "y": 1702.75,
+          "x": 429.3642578125,
+          "y": 1594.3052,
           "direction": "right"
         },
         "end": {
@@ -2814,8 +2943,8 @@
           "columnIds": [
             "5a8bc093-4ef3-49b6-b4d7-6858b28521a0"
           ],
-          "x": 528.4,
-          "y": 1886.8562,
+          "x": 475.9555,
+          "y": 1900.1893,
           "direction": "left"
         },
         "constraintName": "fk_chat_posts_to_chat_post_pictures",
@@ -2858,7 +2987,7 @@
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
           "x": 467.27099609375,
-          "y": 891.8225,
+          "y": 828.2725,
           "direction": "right"
         },
         "end": {
@@ -2883,9 +3012,9 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 467.27099609375,
-          "y": 946.6225,
-          "direction": "right"
+          "x": 77.87849934895833,
+          "y": 1068.0225,
+          "direction": "bottom"
         },
         "end": {
           "tableId": "df418f5d-8d11-4811-b6bf-7f401c0349d9",
@@ -2935,8 +3064,8 @@
           "columnIds": [
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
-          "x": 350.4532470703125,
-          "y": 1138.4225000000001,
+          "x": 389.39249674479163,
+          "y": 1068.0225,
           "direction": "bottom"
         },
         "end": {
@@ -2988,7 +3117,7 @@
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
           "x": 467.27099609375,
-          "y": 1111.0224999999998,
+          "y": 1033.7725,
           "direction": "right"
         },
         "end": {
@@ -2997,7 +3126,7 @@
             "12031c60-70ee-462d-aee1-2771c9c6214a"
           ],
           "x": 1073.6445,
-          "y": 1503.2504,
+          "y": 1493.0004,
           "direction": "left"
         },
         "constraintName": "fk_users_to_notifications",
@@ -3013,8 +3142,8 @@
           "columnIds": [
             "05ef13e1-35f0-4ed0-87e4-ce1dffc033e4"
           ],
-          "x": 1547.1319091796875,
-          "y": 1706.4063,
+          "x": 1241.909739453125,
+          "y": 1659.2948,
           "direction": "top"
         },
         "end": {
@@ -3022,9 +3151,9 @@
           "columnIds": [
             "9940f213-fc64-4a08-9ee6-6f6a50823096"
           ],
-          "x": 1467.1396171875,
-          "y": 1503.2504,
-          "direction": "right"
+          "x": 1262.67330859375,
+          "y": 1548.0004,
+          "direction": "bottom"
         },
         "constraintName": "fk_notifications_to_notification_user",
         "visible": true,
@@ -3048,9 +3177,9 @@
           "columnIds": [
             "b517f230-81ad-4683-b3ca-170cf9c9a09e"
           ],
-          "x": 1340.2439697265625,
-          "y": 1706.4063,
-          "direction": "top"
+          "x": 1448.79767890625,
+          "y": 1724.5448,
+          "direction": "right"
         },
         "constraintName": "fk_notification_type_to_notifications",
         "visible": true,
@@ -3066,7 +3195,7 @@
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
           "x": 467.27099609375,
-          "y": 1001.4224999999999,
+          "y": 896.7725,
           "direction": "right"
         },
         "end": {
@@ -3092,7 +3221,7 @@
             "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
           ],
           "x": 467.27099609375,
-          "y": 1056.2224999999999,
+          "y": 965.2725,
           "direction": "right"
         },
         "end": {
@@ -3107,6 +3236,188 @@
         "constraintName": "fk_users_to_favorite_users",
         "visible": true,
         "id": "4590c9ef-532a-4749-9893-3852d08dd099"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "1d31d037-834b-4da5-aa9a-78c2d1c6ebdb",
+          "columnIds": [
+            "2a0cb5d0-db96-47aa-b92b-86b5324eec48"
+          ],
+          "x": 116.8177490234375,
+          "y": 794.0225,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "85cbd549-c7a6-458d-a2c3-2b9ea5d746f7",
+          "columnIds": [
+            "d64d5329-e4f7-4f8e-9905-048c76eb84a2"
+          ],
+          "x": 134.882504296875,
+          "y": 400.1837,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_users_to_friend_board_posts",
+        "visible": true,
+        "id": "f5a6c302-a628-4fdd-aacd-8580c02b53a0"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "85cbd549-c7a6-458d-a2c3-2b9ea5d746f7",
+          "columnIds": [
+            "8138e659-684e-465d-9bca-aa49cb85f1c9"
+          ],
+          "x": 528.8632171875,
+          "y": 256.1837,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "a3113bf9-6f7b-41d3-82c5-727e87e3e80f",
+          "columnIds": [
+            "7adb1ba9-8c44-452b-ba84-e7273b6af29b"
+          ],
+          "x": 571,
+          "y": 393.55,
+          "direction": "left"
+        },
+        "constraintName": "fk_friend_board_posts_to_friend_post_requests",
+        "visible": true,
+        "id": "8b45aef9-2fe3-4ff5-b85b-6ebafde370ad"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "85cbd549-c7a6-458d-a2c3-2b9ea5d746f7",
+          "columnIds": [
+            "8138e659-684e-465d-9bca-aa49cb85f1c9"
+          ],
+          "x": 528.8632171875,
+          "y": 352.1837,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "3a5ce1d8-9b15-49c0-ac5e-ace839e0d51e",
+          "columnIds": [
+            "4ee5b720-1111-458e-a11a-a73fa5127f8f"
+          ],
+          "x": 571.2,
+          "y": 566.15,
+          "direction": "left"
+        },
+        "constraintName": "fk_friend_board_posts_to_friend_post_gives",
+        "visible": true,
+        "id": "71c19d8c-f07a-4036-9e0a-734286d4b1bc"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "a45dc3e5-aeb3-4950-b1ad-4412243f3a19",
+          "columnIds": [
+            "38e27f9d-f83e-49a7-aac2-157c9520468b"
+          ],
+          "x": 1261.7327,
+          "y": 313.9828,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "212d7e87-071d-4471-8772-4830f58e98c0",
+          "columnIds": [
+            "6810198b-0751-4332-9856-56c52ae2eb29"
+          ],
+          "x": 546.88330078125,
+          "y": 517.5389,
+          "direction": "right"
+        },
+        "constraintName": "fk_dungeons_to_multiplay_board_posts",
+        "visible": true,
+        "id": "4a6358dd-e555-4d93-8b2d-a33d5c4cc96e"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "d3d471a5-760c-4e7f-845a-72621c2835a2",
+          "columnIds": [
+            "d4b0c15b-18ae-4486-b41e-f93d7cb72865"
+          ],
+          "x": 1368.8,
+          "y": 508.0062,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "212d7e87-071d-4471-8772-4830f58e98c0",
+          "columnIds": [
+            "b4f1fd51-f792-4a0c-9a03-eadbb18c6deb"
+          ],
+          "x": 546.88330078125,
+          "y": 588.3722333333334,
+          "direction": "right"
+        },
+        "constraintName": "fk_multiplay_types_to_multiplay_board_posts",
+        "visible": true,
+        "id": "bdfae249-646f-4f0c-b9e4-ef67c4c03459"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "85cbd549-c7a6-458d-a2c3-2b9ea5d746f7",
+          "columnIds": [
+            "8138e659-684e-465d-9bca-aa49cb85f1c9"
+          ],
+          "x": 397.536312890625,
+          "y": 400.1837,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "7ac2b1ee-22a6-411e-817e-b202bbd2b9c9",
+          "columnIds": [
+            "7c7c20e3-274d-4050-8655-b5468acc6a5c"
+          ],
+          "x": 572.9786,
+          "y": 849.7834,
+          "direction": "left"
+        },
+        "constraintName": "fk_friend_board_posts_to_friend_board_post_pictures",
+        "visible": true,
+        "id": "da664d8f-3bf2-4de2-b4fc-ca820b0e6a5b"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "212d7e87-071d-4471-8772-4830f58e98c0",
+          "columnIds": [
+            "a170809b-9655-4484-82d0-bbf8ba13c6a4"
+          ],
+          "x": 546.88330078125,
+          "y": 446.70556666666664,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "48d8f216-53bb-4a30-9434-6e7a76b3800f",
+          "columnIds": [
+            "775c92cd-08a5-4e69-b705-b38dab7feaf4"
+          ],
+          "x": 572.3561,
+          "y": 980.0948,
+          "direction": "left"
+        },
+        "constraintName": "fk_multiplay_board_posts_to_multiplay_board_post_picture",
+        "visible": true,
+        "id": "deb7a233-6c99-4cb8-ae90-000d6838d123"
       }
     ]
   }
