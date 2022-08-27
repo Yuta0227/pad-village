@@ -15,7 +15,7 @@ class MonstersTableSeeder extends Seeder
      */
     public function run()
     {
-        $url = storage_path() . '/app/json/monster_information.json';
+        $url = storage_path() . '/json/monster_information.json';
         $json_string = file_get_contents($url);
         $monster_json = json_decode($json_string, true);
         $data = array();
