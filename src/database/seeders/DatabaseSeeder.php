@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::factory(100)->create();
         $this->call(MonstersTableSeeder::class);
     }
 }
