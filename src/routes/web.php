@@ -21,4 +21,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/boards/timeline',function(){
+    return view('boards.boards_timeline');
+});
+
 require __DIR__.'/auth.php';
