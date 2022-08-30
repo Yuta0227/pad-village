@@ -1,13 +1,13 @@
-<header class="flex top-0 left-0 h-40 w-screen items-center" style="padding:10px;background-color:#EEF6FF;">
-    <div class="font-bold w-1/2" style="width:50%;font-weight:bold;">パズ村</div>
-    <div class="w-2/5 flex justify-end items-center" style="width:40%;">
-        @if (!Auth::check())
-            <div class="w-1/2 bg-slate-50">
+<header class="flex top-0 left-0 items-center" style="padding:10px;background-color:#EEF6FF;height:50px;">
+    <div style="width:50%;font-weight:bold;">パズ村</div>
+    <div class="flex justify-end items-center" style="width:40%;">
+        @if (Auth::check())
+            <div>
                 <a href="{{ route('login') }}">
                     <img src="{{ asset('img/Frame8.svg') }}">
                 </a>
             </div>
-            <div class="w-1/2">
+            <div>
                 <a href="{{ route('register') }}">
                     <img src="{{ asset('img/Frame9.svg') }}">
                 </a>
