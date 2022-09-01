@@ -1,4 +1,4 @@
-<header class="flex top-0 left-0 items-center" style="padding:10px;background-color:#EEF6FF;height:50px;">
+<header class="fixed w-full flex top-0 left-0 items-center" style="padding:10px;background-color:#EEF6FF;height:50px;">
     <div style="width:50%;font-weight:bold;">パズ村</div>
     <div class="flex justify-end items-center" style="width:40%;">
         @if (!Auth::check())
