@@ -131,7 +131,7 @@ $posts = collect([
             </div>
         @endforeach
     </section>
-    <form action="{{ route('add_reply', ['chat_id' => $chat_id]) }}" method="POST"
+    <form action="{{ route('reply_to_chats', ['chat_id' => $chat_id]) }}" method="POST"
         style="height:50px;bottom:0;padding:10px;background-color:#EEF6FF;gap:1px;" class="flex left-0 w-full fixed">
         @csrf
         @if (Auth::check())

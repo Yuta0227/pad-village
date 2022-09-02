@@ -4,12 +4,7 @@
         @if (!Auth::check())
             <div>
                 <a href="{{ route('login') }}">
-                    <img src="{{ asset('img/Frame8.svg') }}">
-                </a>
-            </div>
-            <div>
-                <a href="{{ route('register') }}">
-                    <img src="{{ asset('img/Frame9.svg') }}">
+                    <img src="{{ asset('img/enter_village.svg') }}">
                 </a>
             </div>
         @endif
