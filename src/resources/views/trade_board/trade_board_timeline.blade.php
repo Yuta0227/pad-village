@@ -156,6 +156,7 @@ $posts = collect([
                     <div style="width:20%;">{{ $post->created_at }}</div>
                     {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
                 </div>
+                <div>フレンド</div>
                 <div class="flex">
                     <div>出:</div>
                     <div>
@@ -177,27 +178,18 @@ $posts = collect([
                     </div>
                 </div>
                 <div>備考:{{ $post->description }}</div>
-                <div><a class="underline text-blue-500"
-                        href="{{ route('trade_board_thread', ['parent_trade_post_id' => $post->id]) }}">スレッドで返信する</a></div>
+                <div>
+                    <a class="underline text-blue-500"
+                        href="{{ route('trade_board_thread', ['parent_trade_post_id' => $post->id]) }}">スレッドで返信する</a>
+                </div>
             </div>
         @endforeach
     </section>
     <div style="height:50px;bottom:0;padding:10px;background-color:#EEF6FF;gap:1px;" class="flex left-0 w-full fixed">
-        @if (Auth::check())
-            <button id="open_post_trade_form"
-                style="font-size:smaller;:bold;color:white;width:100%;text-align:center;border:1px solid black;background-color:#3B81F6;border-radius:10px;">
-                投稿する</button>
-        @else
-            <button disabled
-                style="font-size:smaller;:bold;color:white;width:100%;text-align:center;border:1px solid black;background-color:#3B81F6;border-radius:10px;">
-                住人(住民？村人？)になると投稿できます</button>
-            {{-- クリック時にナビゲーションが出てくるか登録ページに飛ばす。
-                    飛ばされるよりナビゲーションから自分の意志の方がいいかも？
-                    ナビゲーション出すならヘッダーのボタンの意味は？
-                    ここが遷移するところだよってわかりやすいアニメーションほしい。
-                    住人から帰るならヘッダーのボタンの文字を変える必要あり 
-                    村に入るをログインと捉えるか、登録と捉えるかわかりずらいかも --}}
-        @endif
+        <button id="open_post_trade_form"
+            style="font-size:smaller;font-weight:bold;color:white;width:100%;text-align:center;border:1px solid black;background-color:#3B81F6;border-radius:10px;">
+            投稿する</button>
     </div>
-    <form action="{{ route('post_to_trade_board') }}"></form>
+    <form id="" hidden action="{{ route('post_to_trade_board') }}">
+    </form>
 @endsection
