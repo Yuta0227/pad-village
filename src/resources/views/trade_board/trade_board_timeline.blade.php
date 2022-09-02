@@ -19,28 +19,28 @@ $posts = collect([
                 'trade_board_post_id' => 1,
                 'monster_amount' => 2,
                 'monster_id' => 1,
-                'monster_name' => 'たまドラ'
+                'monster_name' => 'たまドラ',
             ],
-            (object)[
+            (object) [
                 'trade_board_post_id' => 1,
                 'monster_amount' => 4,
                 'monster_id' => 2,
-                'monster_name' => 'ホノピィ'
-            ]
+                'monster_name' => 'ホノピィ',
+            ],
         ],
         'trade_post_gives' => (object) [
             (object) [
                 'trade_board_post_id' => 1,
                 'monster_amount' => 2,
                 'monster_id' => 8,
-                'monster_name' => '火ノエル'
+                'monster_name' => '火ノエル',
             ],
-            (object)[
+            (object) [
                 'trade_board_post_id' => 1,
                 'monster_amount' => 4,
                 'monster_id' => 3,
-                'monster_name' => 'ミズピィ'
-            ]
+                'monster_name' => 'ミズピィ',
+            ],
         ],
     ],
     (object) [
@@ -57,16 +57,16 @@ $posts = collect([
                 'trade_board_post_id' => 2,
                 'monster_amount' => 2,
                 'monster_id' => 1,
-                'monster_name' => 'たまドラ'
-            ]
+                'monster_name' => 'たまドラ',
+            ],
         ],
         'trade_post_gives' => (object) [
             (object) [
                 'trade_board_post_id' => 2,
                 'monster_amount' => 2,
                 'monster_id' => 8,
-                'monster_name' => '火ノエル'
-            ]
+                'monster_name' => '火ノエル',
+            ],
         ],
     ],
     (object) [
@@ -83,16 +83,16 @@ $posts = collect([
                 'trade_board_post_id' => 3,
                 'monster_amount' => 2,
                 'monster_id' => 1,
-                'monster_name' => 'たまドラ'
+                'monster_name' => 'たまドラ',
             ],
-            (object)[
+            (object) [
                 'trade_board_post_id' => 3,
                 'monster_amount' => 4,
                 'monster_id' => 2,
-                'monster_name' => 'ホノピィ'
-            ]
+                'monster_name' => 'ホノピィ',
+            ],
         ],
-        'trade_post_gives' => null
+        'trade_post_gives' => null,
     ],
     (object) [
         'id' => 4,
@@ -109,14 +109,14 @@ $posts = collect([
                 'trade_board_post_id' => 4,
                 'monster_amount' => 2,
                 'monster_id' => 8,
-                'monster_name' => '火ノエル'
+                'monster_name' => '火ノエル',
             ],
-            (object)[
+            (object) [
                 'trade_board_post_id' => 4,
                 'monster_amount' => 4,
                 'monster_id' => 3,
-                'monster_name' => 'ミズピィ'
-            ]
+                'monster_name' => 'ミズピィ',
+            ],
         ],
     ],
     (object) [
@@ -133,18 +133,17 @@ $posts = collect([
                 'trade_board_post_id' => 5,
                 'monster_amount' => 2,
                 'monster_id' => 1,
-                'monster_name' => 'たまドラ'
+                'monster_name' => 'たまドラ',
             ],
-            (object)[
+            (object) [
                 'trade_board_post_id' => 5,
                 'monster_amount' => 4,
                 'monster_id' => 2,
-                'monster_name' => 'ホノピィ'
-            ]
+                'monster_name' => 'ホノピィ',
+            ],
         ],
-        'trade_post_gives' => null
+        'trade_post_gives' => null,
     ],
-
 ]);
 @endphp
 @extends('layouts.user_page')
@@ -157,21 +156,48 @@ $posts = collect([
                     <div style="width:20%;">{{ $post->created_at }}</div>
                     {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
                 </div>
-                <div>{{ $post->description }}</div>
+                <div class="flex">
+                    <div>出:</div>
+                    <div>
+                        @if (!empty($post->trade_post_gives))
+                            @foreach ($post->trade_post_gives as $give)
+                                {{ $give->monster_name . '×' . $give->monster_amount }}<br>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+                <div class="flex">
+                    <div>求:</div>
+                    <div>
+                        @if (!empty($post->trade_post_requests))
+                            @foreach ($post->trade_post_requests as $request)
+                                {{ $request->monster_name . '×' . $request->monster_amount }}<br>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+                <div>備考:{{ $post->description }}</div>
+                <div><a class="underline text-blue-500"
+                        href="{{ route('trade_board_thread', ['parent_trade_post_id' => $post->id]) }}">スレッドで返信する</a></div>
             </div>
         @endforeach
     </section>
-    <form action="{{ route('add_reply', ['chat_id' => $chat_id]) }}" method="POST"
-        style="height:50px;bottom:0;padding:10px;background-color:#EEF6FF;gap:1px;" class="flex left-0 w-full fixed">
-        @csrf
+    <div style="height:50px;bottom:0;padding:10px;background-color:#EEF6FF;gap:1px;" class="flex left-0 w-full fixed">
         @if (Auth::check())
-            <input name="user_id" value="{{ Auth::id() }}" hidden>
+            <button id="open_post_trade_form"
+                style="font-size:smaller;:bold;color:white;width:100%;text-align:center;border:1px solid black;background-color:#3B81F6;border-radius:10px;">
+                投稿する</button>
         @else
-            <input name="user_id" value="null" hidden>
+            <button disabled
+                style="font-size:smaller;:bold;color:white;width:100%;text-align:center;border:1px solid black;background-color:#3B81F6;border-radius:10px;">
+                住人(住民？村人？)になると投稿できます</button>
+            {{-- クリック時にナビゲーションが出てくるか登録ページに飛ばす。
+                    飛ばされるよりナビゲーションから自分の意志の方がいいかも？
+                    ナビゲーション出すならヘッダーのボタンの意味は？
+                    ここが遷移するところだよってわかりやすいアニメーションほしい。
+                    住人から帰るならヘッダーのボタンの文字を変える必要あり 
+                    村に入るをログインと捉えるか、登録と捉えるかわかりずらいかも --}}
         @endif
-        <input placeholder="入力してください" name="description"
-            style="font-size:smaller;width:85%;border:1px solid black;border-radius:10px;">
-        <input value="返信" type="submit"
-            style="font-size:smaller;:bold;color:white;width:15%;text-align:center;border:1px solid black;background-color:#3B81F6;border-radius:10px;">
-    </form>
+    </div>
+    <form action="{{ route('post_to_trade_board') }}"></form>
 @endsection
