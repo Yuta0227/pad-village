@@ -14,6 +14,7 @@ $posts = collect([
         'created_at' => '00:00',
         'user_name' => 'yuta',
         'reply_count' => 1,
+        'pad_id'=>123456789,
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 1,
@@ -52,6 +53,7 @@ $posts = collect([
         'created_at' => '01:00',
         'user_name' => 'yuta',
         'reply_count' => 0,
+        'pad_id'=>123456789,
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 2,
@@ -78,6 +80,7 @@ $posts = collect([
         'created_at' => '02:00',
         'user_name' => 'yuta',
         'reply_count' => 4,
+        'pad_id'=>123456789,
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 3,
@@ -104,6 +107,7 @@ $posts = collect([
         'user_name' => 'yuta',
         'reply_count' => 3,
         'trade_post_requests' => null,
+        'pad_id'=>123456789,
         'trade_post_gives' => (object) [
             (object) [
                 'trade_board_post_id' => 4,
@@ -128,6 +132,7 @@ $posts = collect([
         'created_at' => '04:00',
         'user_name' => 'yuta',
         'reply_count' => 0,
+        'pad_id'=>null,
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 5,
@@ -156,7 +161,9 @@ $posts = collect([
                     <div style="width:20%;">{{ $post->created_at }}</div>
                     {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
                 </div>
-                <div>フレンド</div>
+                @if(!empty($post->pad_id))
+                <div>フレンド:{{ $post->pad_id }}</div>
+                @endif
                 <div class="flex">
                     <div>出:</div>
                     <div>
@@ -177,7 +184,7 @@ $posts = collect([
                         @endif
                     </div>
                 </div>
-                <div>備考:{{ $post->description }}</div>
+                <div>{{ $post->description }}</div>
                 <div>
                     <a class="underline text-blue-500"
                         href="{{ route('trade_board_thread', ['parent_trade_post_id' => $post->id]) }}">スレッドで返信する</a>
