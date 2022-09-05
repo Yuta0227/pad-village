@@ -12,9 +12,12 @@ $posts = collect([
         'parent_trade_board_post_id' => null,
         'updated_at' => null,
         'created_at' => '00:00',
-        'user_name' => 'yuta',
-        'reply_count' => 1,
-        'pad_id'=>123456789,
+        'pad_bool' => false,
+        'depth'=>0,
+        'user' => (object) [
+            'user_name' => 'yuta',
+            'pad_id' => 123456789,
+        ],
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 1,
@@ -51,9 +54,12 @@ $posts = collect([
         'parent_trade_board_post_id' => null,
         'updated_at' => null,
         'created_at' => '01:00',
-        'user_name' => 'yuta',
-        'reply_count' => 0,
-        'pad_id'=>123456789,
+        'pad_bool' => false,
+        'depth'=>0,
+        'user' => (object) [
+            'user_name' => 'yuta',
+            'pad_id' => 123456789,
+        ],
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 2,
@@ -78,9 +84,12 @@ $posts = collect([
         'parent_trade_board_post_id' => null,
         'updated_at' => null,
         'created_at' => '02:00',
-        'user_name' => 'yuta',
-        'reply_count' => 4,
-        'pad_id'=>123456789,
+        'pad_bool' => false,
+        'depth'=>0,
+        'user' => (object) [
+            'user_name' => 'yuta',
+            'pad_id' => 123456789,
+        ],
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 3,
@@ -104,10 +113,13 @@ $posts = collect([
         'parent_trade_board_post_id' => null,
         'updated_at' => null,
         'created_at' => '03:00',
-        'user_name' => 'yuta',
-        'reply_count' => 3,
+        'pad_bool' => false,
+        'depth'=>0,
+        'user' => (object) [
+            'user_name' => 'yuta',
+            'pad_id' => 123456789,
+        ],
         'trade_post_requests' => null,
-        'pad_id'=>123456789,
         'trade_post_gives' => (object) [
             (object) [
                 'trade_board_post_id' => 4,
@@ -130,9 +142,12 @@ $posts = collect([
         'parent_trade_board_post_id' => null,
         'updated_at' => null,
         'created_at' => '04:00',
-        'user_name' => 'yuta',
-        'reply_count' => 0,
-        'pad_id'=>null,
+        'pad_bool' => false,
+        'depth'=>0,
+        'user' => (object) [
+            'user_name' => 'yuta',
+            'pad_id' => 123456789,
+        ],
         'trade_post_requests' => (object) [
             (object) [
                 'trade_board_post_id' => 5,
@@ -153,16 +168,21 @@ $posts = collect([
 @endphp
 @extends('layouts.user_page')
 @section('content')
-    <section style="background-color:#EEF6FF;margin-bottom:50px;margin-top:50px;">
+<section class="fixed" style="height:25px;top:50px;width:100%;background-color:#EEF6FF;">
+    <div>
+        <div>タイムライン</div>
+    </div>
+</section>
+    <section style="background-color:#EEF6FF;margin-bottom:50px;margin-top:75px;">
         @foreach ($posts as $post)
             <div style="margin:10px;padding:10px;background-color:white;border-radius:10px;">
                 <div class="flex">
-                    <div style="width:80%;">{{ $post->user_name }}</div>
+                    <div style="width:80%;">{{ $post->user->user_name }}</div>
                     <div style="width:20%;">{{ $post->created_at }}</div>
                     {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
                 </div>
-                @if(!empty($post->pad_id))
-                <div>フレンド:{{ $post->pad_id }}</div>
+                @if(!empty($post->user->pad_id))
+                <div>フレンド:{{ $post->user->pad_id }}</div>
                 @endif
                 <div class="flex">
                     <div>出:</div>
@@ -187,7 +207,7 @@ $posts = collect([
                 <div>{{ $post->description }}</div>
                 <div>
                     <a class="underline text-blue-500"
-                        href="{{ route('trade_board_thread', ['parent_trade_post_id' => $post->id]) }}">スレッドで返信する</a>
+                        href="{{ route('view_trade_board_thread', ['parent_trade_post_id' => $post->id]) }}">スレッドで返信する</a>
                 </div>
             </div>
         @endforeach
@@ -197,6 +217,6 @@ $posts = collect([
             style="font-size:smaller;font-weight:bold;color:white;width:100%;text-align:center;border:1px solid black;background-color:#3B81F6;border-radius:10px;">
             投稿する</button>
     </div>
-    <form id="" hidden action="{{ route('post_to_trade_board') }}">
+    <form id="" hidden action="{{ route('post_to_trade_board_timeline') }}">
     </form>
 @endsection
