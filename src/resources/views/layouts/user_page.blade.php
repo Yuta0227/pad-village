@@ -13,7 +13,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body style="background-color:#EEF6FF;">
     @include('header')
     @yield('content')
 </body>
