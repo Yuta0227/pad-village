@@ -1,15 +1,13 @@
-<header class="fixed w-full flex top-0 left-0 items-center" style="padding:10px;background-color:#EEF6FF;height:50px;">
-    <div style="width:50%;font-weight:bold;">パズ村</div>
-    <div class="flex justify-end items-center" style="width:40%;">
+<header>
+    <section class="fixed w-full flex top-0 left-0 items-center bg-blue-50 px-5">
+        <h1 class="font-bold text-xl leading-[64px]">パズ村</h1>
         @if (!Auth::check())
-            <div>
-                <a href="{{ route('login') }}">
-                    <img src="{{ asset('img/enter_village.svg') }}">
-                </a>
-            </div>
+            <a href="{{ route('login') }}" class="bg-blue-500 flex gap-1 px-2 rounded-lg ml-auto mr-3">
+                <img src="{{ asset('img/enter_village.svg') }}">
+                <span class="text-white font-bold text-sm leading-8">村に入る</span>
+            </a>
         @endif
-    </div>
-    <div style="width:10%;" class="flex items-center justify-center">
-        <img src="{{ asset('img/Vector.svg') }}">
-    </div>
+        <img src="{{ asset('img/Vector.svg') }}" width="32">
+    </section>
+    <div class="h-16"></div>
 </header>
