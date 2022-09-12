@@ -15,7 +15,7 @@
         @endif
         <div class="flex mt-2">
             <p class="mr-2 text-gray-400">出:</p>
-            <ul class="flex gap-2 font-bold flex-wrap max-w-xl overflow-scroll">
+            <ul class="flex gap-2 font-bold flex-wrap max-w-xl">
                 @if (!empty($post->trade_post_gives))
                     @foreach ($post->trade_post_gives as $give)
                         <li class="rounded-md px-1">
@@ -27,7 +27,7 @@
         </div>
         <div class="flex mt-2">
             <p class="mr-2 text-gray-400">求:</p>
-            <ul class="flex gap-2 font-bold flex-wrap max-w-xl overflow-scroll">
+            <ul class="flex gap-2 font-bold flex-wrap max-w-xl">
                 @if (!empty($post->trade_post_requests))
                     @foreach ($post->trade_post_requests as $request)
                         <li class="rounded-md px-1">
