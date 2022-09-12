@@ -157,7 +157,7 @@ $replies = collect([
     </div>
     <section class="px-5 pb-8">
         <x-trade-post-card :post="$post" />
-        <section class="flex flex-col gap-5 mt-5">
+        <section class="flex flex-col gap-5 mt-5 pt-5 border-t-2">
             @foreach ($replies as $reply)
                 <x-trade-post-card :post="$reply"></x-trade-post-card>
             @endforeach
