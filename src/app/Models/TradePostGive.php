@@ -14,4 +14,10 @@ class TradePostGive extends Model
     protected $fillable = [
         'trade_board_post_id', 'monster_id','monster_amount'
     ];
+    public function trade_board_post(){
+        return $this->belongsTo(TradeBoardPost::class);
+    }
+    public function monster(){
+        return $this->belongsTo(Monster::class);
+    }
 }
