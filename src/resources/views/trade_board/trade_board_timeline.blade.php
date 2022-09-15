@@ -176,7 +176,7 @@ $posts = collect([
             <x-trade-post-card :post="$post">
                 <div class="mt-2">
                     <a class="underline text-blue-500"
-                        href="{{ route('view_trade_board_thread', ['parent_trade_post_id' => $post->id]) }}">
+                        href="/boards/trade/{{ $post->id }}">
                         スレッドで返信する
                     </a>
                 </div>
@@ -186,6 +186,6 @@ $posts = collect([
     <button id="open_post_trade_form" class="fixed bottom-10 right-8 bg-blue-500 rounded-full p-4 shadow-md drop-shadow-md">
         <img src="{{ asset('img/plus.svg') }}" alt="plus" width="28">
     </button>
-    <form id="" hidden action="{{ route('post_to_trade_board_timeline') }}">
+    <form id="" hidden action="/boards/trade/create">
     </form>
 @endsection

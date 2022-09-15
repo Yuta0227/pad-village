@@ -148,9 +148,9 @@ $replies = collect([
 @section('content')
     <div class="h-8">
         <h2 class="flex ml-5 font-bold fixed w-full bg-blue-50">
-            <a @if (empty($post->parent_trade_board_post_id)) href="{{ route('view_trade_board_timeline') }}"
+            <a @if (empty($post->parent_trade_board_post_id)) href="/boards/trade"
             @else
-            href="{{ route('view_trade_board_thread', ['parent_trade_post_id' => $post->parent_trade_board_post_id]) }}" @endif
+            href="/boards/trade/{{ $post->parent_trade_board_post_id }}" @endif
                 class="block mr-2 my-auto"><img src="{{ asset('/img/go_back_arrow.svg') }}" class="-mt-1"></a>
             <span>スレッド</span>
         </h2>
@@ -167,6 +167,6 @@ $replies = collect([
         {{-- 投稿or返信はモーダル内で選べる --}}
         <img src="{{ asset('img/plus.svg') }}" alt="plus" width="28">
     </button>
-    <form id="" hidden action="{{ route('post_to_trade_board_timeline') }}">
+    <form id="" hidden action="/boards/trade/create">
     </form>
 @endsection

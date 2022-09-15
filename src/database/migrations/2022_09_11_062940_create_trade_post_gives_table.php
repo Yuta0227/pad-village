@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('trade_post_gives', function (Blueprint $table) {
             $table->id();
             $table->foreignId('trade_board_post_id')->constrained('trade_board_posts');
-            $table->foreignId('monster_id')->constrained('monsters');
+            $table->string('monster_name');
             $table->integer('monster_amount');
         });
     }

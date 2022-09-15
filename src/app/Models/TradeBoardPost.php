@@ -23,4 +23,10 @@ class TradeBoardPost extends Model
     public function trade_post_gives(){
         return $this->hasMany(TradePostGive::class);
     }
+    public function scopeIsReply($query){
+        return $query->where('is_reply',1);
+    }
+    public function scopeNotReply($query,$str){
+        return $query->where('is_reply',0);
+    }
 }
