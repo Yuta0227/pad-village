@@ -12,8 +12,9 @@ class TradeBoardPost extends Model
     protected $guarded = array('id');
     public $timestamps = true;
     protected $fillable = [
-        'user_id', 'description', 'parent_trade_board_post_id', 'allow_show_pad_id_bool', 'depth', 'is_reply','created_at','updated_at'
+        'user_id', 'description', 'parent_trade_board_post_id', 'allow_show_pad_id_bool', 'depth','is_only_description','created_at','updated_at'
     ];
+    protected $dates=['created_at','updated_at'];
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -23,10 +24,7 @@ class TradeBoardPost extends Model
     public function trade_post_gives(){
         return $this->hasMany(TradePostGive::class);
     }
-    public function scopeIsReply($query){
-        return $query->where('is_reply',1);
-    }
-    public function scopeNotReply($query,$str){
-        return $query->where('is_reply',0);
+    public static function posts_for_timeline(){
+        return self::where('parent_trade_board_post_id',null)->orderBy('created_at','desc');
     }
 }

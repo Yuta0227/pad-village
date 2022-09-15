@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TradeBoardPost;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TradeBoardController extends Controller
@@ -13,7 +15,18 @@ class TradeBoardController extends Controller
      */
     public function index()
     {
-        return view('/trade_board/trade_board_timeline');
+        $posts=TradeBoardPost::posts_for_timeline()->with('trade_post_gives')->with('trade_post_requests')->with('user')->get()->groupBy(function($row){
+            return $row->created_at->format('Y年m月d日');
+        });
+        // foreach($posts as &$post){
+        //     //インスタンス生成
+        //     $created_at=new Carbon($post->created_at);
+        //     //時：分にformat
+        //     $formatted_created_at=$created_at->format('H:i');
+        //     //反映
+        //     $post->created_at=$formatted_created_at;
+        // }
+        return view('/trade_board/trade_board_timeline',compact('posts'));
     }
     
     /**

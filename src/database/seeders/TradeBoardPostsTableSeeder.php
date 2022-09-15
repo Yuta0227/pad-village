@@ -15,6 +15,6 @@ class TradeBoardPostsTableSeeder extends Seeder
      */
     public function run()
     {
-       TradeBoardPost::factory()->count(20)->create();
+       TradeBoardPost::factory()->count(50)->create();
     }
 }

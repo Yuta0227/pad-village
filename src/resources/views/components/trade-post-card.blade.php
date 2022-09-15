@@ -1,9 +1,8 @@
 @props(['post'])
-
 <section class="bg-white rounded-md p-3">
     <p class="flex">
         <span class="text-gray-400 text-lg">{{ $post->user->user_name }}</span>
-        <span class="ml-auto text-gray-400">{{ $post->created_at }}</span>
+        <span class="ml-auto text-gray-400">{{ $post->created_at->format('H:i') }}</span>
         {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
     </p>
     @if (!empty($post->trade_post_gives) || !empty($post->trade_post_requests))
@@ -40,7 +39,7 @@
             <p class="mt-2 bg-gray-100 rounded-md px-2 py-2">{{ $post->description }}</p>
         @endif
     @else
-        <p>{{ $post->description }}</p>
+        <p class="mt-2 bg-gray-100 rounded-md px-2 py-2">{{ $post->description }}</p>
     @endif
     {{ $slot }}
 </section>

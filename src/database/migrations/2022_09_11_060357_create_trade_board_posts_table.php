@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('parent_trade_board_post_id')->nullable();
             $table->boolean('allow_show_pad_id_bool');
             $table->integer('depth')->default(0);
-            $table->boolean('is_reply');
+            $table->boolean('is_only_description');
             $table->timestamps();
             $table->softDeletes();
         });
