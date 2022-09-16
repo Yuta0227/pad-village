@@ -1,8 +1,8 @@
 @props(['post'])
 <section class="bg-white rounded-md p-3">
     <p class="flex">
-        <span class="text-gray-400 text-lg ml-auto" style="font-size:10px;">{{ $post->user->name }}</span>
-        <span style="font-size:10px;" class="ml-auto text-gray-400">{{ $post->created_at->format('m/d H:i') }}</span>
+        <span class="text-gray-400 text-lg" style="font-size:10px;">{{ $post->user->name }}</span>
+        <span style="font-size:10px;" class="text-lg ml-auto text-gray-400">{{ $post->created_at->format('m/d H:i') }}</span>
         {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
     </p>
     @if (!$post->trade_post_gives->isEmpty() || !$post->trade_post_requests->isEmpty())
