@@ -27,4 +27,7 @@ class TradeBoardPost extends Model
     public static function posts_for_timeline(){
         return self::where('parent_trade_board_post_id',null)->orderBy('created_at','desc');
     }
+    public static function replies_for_post($parent_trade_board_post_id){
+        return self::where('parent_trade_board_post_id',$parent_trade_board_post_id)->orderBy('created_at','asc');
+    }
 }
