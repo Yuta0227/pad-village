@@ -40,10 +40,9 @@ class TradeBoardController extends Controller
     public function store(Request $request)
     {
 
-
-//最初のやつのみvalidationかけない
-//htmlでは全部requiredかけない=>間違えて最初消したらめんどいから
-//
+//js出すの方で同じことをする
+//一つの組み合わせで片方入力があった場合validationかけてあるはず
+//求出両方一つも入力なかったらはじく
 
 
         //投稿または交渉の場合
@@ -51,6 +50,7 @@ class TradeBoardController extends Controller
             //求のvalidation
             //求出の両方未入力の場合どうするか
             $request_null_count=0;
+            $give_null_count=0;
             foreach ($request->monster_requests as $monster_request_key=>$monster_request) {
                 //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
                 $only_monster_amount_is_filled_out = empty($monster_request['name']) && !empty($monster_request['amount']);
@@ -70,11 +70,13 @@ class TradeBoardController extends Controller
                     $request_null_count++;
                 }
             }
+            // dd($request_null_count);
             //出のvalidation
             foreach ($request->monster_gives as $monster_give) {
                 //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
                 $only_monster_amount_is_filled_out = empty($monster_give['name']) && !empty($monster_give['amount']);
                 $only_monster_name_is_filled_out = !empty($monster_give['name']) && empty($monster_give['amount']);
+                $name_and_amount_are_null = empty($monster_give['name']) && empty($monster_give['amount']);
                 //片方のみ入力が一個でもある時点でformに戻る
                 if ($only_monster_amount_is_filled_out || $only_monster_name_is_filled_out) {
                     $request->validate([
@@ -85,10 +87,19 @@ class TradeBoardController extends Controller
                         'monster_gives.*.amount.required' => '出の個数が未入力です'
                     ]);
                 }
+                if($name_and_amount_are_null){
+                    $give_null_count++;
+                }
             }
-            dd($request);
+            // dd($request);
             //出・求両方未入力の場合
-            if($request->monster_requests){}
+            if(count($request->monster_requests)-$request_null_count===0&&count($request->monster_gives)-$give_null_count===0){
+                // dd($request);
+                //errorを投げる関数
+                //はじく
+            }
+        }else{
+            //返信
         }
         $post = new TradeBoardPost;
         $post->user_id = Auth::id();

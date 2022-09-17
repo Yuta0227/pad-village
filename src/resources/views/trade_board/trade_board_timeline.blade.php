@@ -42,13 +42,13 @@
                                 <label style="display:block;">名前：<input class="monster_requests_name"
                                         id="monster_requests_name{{ $loop->index }}" type="text"
                                         name="monster_requests[{{ $loop->index }}][name]"
-                                        value="{{ $old_monster_request['name'] }}" required></label>
+                                        value="{{ $old_monster_request['name'] }}"></label>
                                 <label style="display:block;">個数：<input class="monster_requests_amount"
                                         id="monster_requests_amount{{ $loop->index }}" type="number"
                                         name="monster_requests[{{ $loop->index }}][amount]"
                                         value="{{ $old_monster_request['amount'] }}"></label>
                             </div>
-                            <div id="delete{{ $loop->index }}" onclick="delete_request_box({{ $loop->index }})">消す</div>
+                            <div onclick="delete_request_box({{ $loop->index }})">消す</div>
                         </div>
                     @endforeach
                 @else
@@ -59,7 +59,7 @@
                             <label style="display:block;">個数：<input class="monster_requests_amount"
                                     id="monster_requests_amount0" type="number" name="monster_requests[0][amount]"></label>
                         </div>
-                        <div id="delete0" onclick="delete_request_box(0)">消す</div>
+                        <div onclick="delete_request_box(0)">消す</div>
                     </div>
                 @endif
             </div>
@@ -70,23 +70,29 @@
             <div id="container_for_monster_gives" style="gap:10px;display:flex;flex-direction:column;">
                 @if (null !== old('monster_gives'))
                     @foreach (old('monster_gives') as $old_monster_give)
-                        <div>
-                            <label style="display:block;">名前：<input class="monster_gives_name"
-                                    id="monster_gives_name{{ $loop->index }}" type="text"
-                                    name="monster_gives[{{ $loop->index }}][name]"
-                                    value="{{ $old_monster_give['name'] }}"></label>
-                            <label style="display:block;">個数：<input class="monster_gives_amount"
-                                    id="monster_gives_amount{{ $loop->index }}" type="number"
-                                    name="monster_gives[{{ $loop->index }}][amount]"
-                                    value="{{ $old_monster_give['amount'] }}"></label>
+                        <div style="display:flex;" id="give_box{{ $loop->index }}">
+                            <div>
+                                <label style="display:block;">名前：<input class="monster_gives_name"
+                                        id="monster_gives_name{{ $loop->index }}" type="text"
+                                        name="monster_gives[{{ $loop->index }}][name]"
+                                        value="{{ $old_monster_give['name'] }}"></label>
+                                <label style="display:block;">個数：<input class="monster_gives_amount"
+                                        id="monster_gives_amount{{ $loop->index }}" type="number"
+                                        name="monster_gives[{{ $loop->index }}][amount]"
+                                        value="{{ $old_monster_give['amount'] }}"></label>
+                            </div>
+                            <div onclick="delete_give_box({{ $loop->index }})">消す</div>
                         </div>
                     @endforeach
                 @else
-                    <div>
-                        <label style="display:block;">名前：<input class="monster_gives_name" id="monster_gives_name0"
-                                type="text" name="monster_gives[0][name]"></label>
-                        <label style="display:block;">個数：<input class="monster_gives_amount" id="monster_gives_amount0"
-                                type="number" name="monster_gives[0][amount]"></label>
+                    <div style="display:flex;" id="give_box0">
+                        <div>
+                            <label style="display:block;">名前：<input class="monster_gives_name" id="monster_gives_name0"
+                                    type="text" name="monster_gives[0][name]"></label>
+                            <label style="display:block;">個数：<input class="monster_gives_amount" id="monster_gives_amount0"
+                                    type="number" name="monster_gives[0][amount]"></label>
+                        </div>
+                        <div onclick="delete_give_box(0)">消す</div>
                     </div>
                 @endif
             </div>
@@ -106,29 +112,48 @@
     <script>
         //求増やすボタン押すと入力欄増える
         document.getElementById('increase_monster_requests').addEventListener('click', function() {
-            let current_monster_requests_input_amount = document.getElementById('container_for_monster_requests').childElementCount;
-            // if()
-            let last_request_box_id=document.getElementById('container_for_monster_requests').children[current_monster_requests_input_amount-1].id;
-            let last_request_box_id_only_number=last_request_box_id.replace('request_box','');
-            console.log(last_request_box_id_only_number);
-            document.getElementById('container_for_monster_requests').insertAdjacentHTML('beforeend', `<div style="display:flex;" id="request_box${last_request_box_id+1}">
+            console.log(document.getElementById('container_for_monster_requests').childElementCount);
+            let next_request_box_id_only_number;
+            if (document.getElementById('container_for_monster_requests').childElementCount === 0) {
+                next_request_box_id_only_number = 0;
+            } else {
+                next_request_box_id_only_number = Number(document.getElementById('container_for_monster_requests')
+                    .children[document.getElementById('container_for_monster_requests').childElementCount - 1]
+                    .id.replace('request_box', ''));
+            }
+            document.getElementById('container_for_monster_requests').insertAdjacentHTML('beforeend', `<div style="display:flex;" id="request_box${next_request_box_id_only_number+1}">
 <div>
-                <label style="display:block;">名前：<input class="monster_requests_name" id="monster_requests_name${last_request_box_id_only_number+1}" type="text" name="monster_requests[${last_request_box_id_only_number+1}][name]"></label>
-                <label style="display:block;">個数：<input class="monster_requests_amount" id="monster_requests_amount${last_request_box_id_only_number+1}" type="number" name="monster_requests[${last_request_box_id_only_number+1}][amount]"></label>
-                </div>                            <div id="delete${last_request_box_id_only_number+1}" class="delete_request_box" onclick="delete_request_box(${last_request_box_id_only_number+1})">消す</div></div>
+                <label style="display:block;">名前：<input class="monster_requests_name" id="monster_requests_name${next_request_box_id_only_number+1}" type="text" name="monster_requests[${next_request_box_id_only_number+1}][name]"></label>
+                <label style="display:block;">個数：<input class="monster_requests_amount" id="monster_requests_amount${next_request_box_id_only_number+1}" type="number" name="monster_requests[${next_request_box_id_only_number+1}][amount]"></label>
+                </div>                            <div id="delete${next_request_box_id_only_number+1}" class="delete_request_box" onclick="delete_request_box(${next_request_box_id_only_number+1})">消す</div></div>
 `);
         });
-        function delete_request_box(id){
+
+        function delete_request_box(id) {
             document.getElementById(`request_box${id}`).remove();
+        }
+
+        function delete_give_box(id) {
+            document.getElementById(`give_box${id}`).remove();
         }
         //出増やすボタン押すと入力欄増える
         document.getElementById('increase_monster_gives').addEventListener('click', function() {
-            let current_monster_gives_input_amount = document.getElementById('container_for_monster_gives').childElementCount;
-            console.log(current_monster_gives_input_amount);
-            document.getElementById('container_for_monster_gives').insertAdjacentHTML('beforeend', `<div style="display:flex;" id="request_box${current_monster_gives_input_amount}"><div>
-                <label style="display:block;">名前：<input class="monster_gives_name" id="monster_gives_name${current_monster_gives_input_amount}" type="text" name="monster_gives[${current_monster_gives_input_amount}][name]"></label>
-                <label style="display:block;">個数：<input class="monster_gives_amount" id="monster_gives_amount${current_monster_gives_input_amount}" type="number" name="monster_gives[${current_monster_gives_input_amount}][amount]"></label>
-                </div><div id="delete${current_monster_gives_input_amount}" class="delete_request_box">消す</div></div>`);
+            let next_give_box_id_only_number;
+            if (document.getElementById('container_for_monster_gives').childElementCount === 0) {
+                next_give_box_id_only_number = 0;
+            } else {
+                next_give_box_id_only_number = Number(document.getElementById('container_for_monster_gives')
+                    .children[document.getElementById('container_for_monster_gives').childElementCount - 1].id
+                    .replace('give_box', ''));
+            }
+            document.getElementById('container_for_monster_gives').insertAdjacentHTML('beforeend',
+                `<div style="display:flex;" id="give_box${next_give_box_id_only_number+1}">
+                    <div>
+                <label style="display:block;">名前：<input class="monster_gives_name" id="monster_gives_name${next_give_box_id_only_number+1}" type="text" name="monster_gives[${next_give_box_id_only_number+1}][name]"></label>
+                <label style="display:block;">個数：<input class="monster_gives_amount" id="monster_gives_amount${next_give_box_id_only_number+1}" type="number" name="monster_gives[${next_give_box_id_only_number+1}][amount]"></label>
+                </div>
+                <div class="delete_give_box" onclick="delete_give_box(${next_give_box_id_only_number+1})">消す</div>
+                </div>`);
         });
     </script>
 @endsection
