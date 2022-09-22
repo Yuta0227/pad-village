@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\TradeBoardPost;
+use App\Models\TradePostGive;
+use App\Models\TradePostRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 
 class TradeBoardController extends Controller
 {
@@ -39,79 +43,35 @@ class TradeBoardController extends Controller
      */
     public function store(Request $request)
     {
-
-//js出すの方で同じことをする
-//一つの組み合わせで片方入力があった場合validationかけてあるはず
-//求出両方一つも入力なかったらはじく
-
-
+        $previous_url = app('url')->previous();
+        $this->save_entered_data_to_session($request);
+        if (!Auth::check()) {
+            //ログインページに遷移させるとりあえずもとにもどしてる
+            $errors = new MessageBag();
+            $errors->add('', 'ログインしてから投稿してください');
+            return redirect($previous_url)->withErrors($errors);
+        }
+        $is_post_or_negotiation=$request->is_only_description==0;
         //投稿または交渉の場合
-        if ($request->is_only_description == 0) {
+        if ($is_post_or_negotiation) {
             //求のvalidation
-            //求出の両方未入力の場合どうするか
-            $request_null_count=0;
-            $give_null_count=0;
-            foreach ($request->monster_requests as $monster_request_key=>$monster_request) {
-                //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
-                $only_monster_amount_is_filled_out = empty($monster_request['name']) && !empty($monster_request['amount']);
-                $only_monster_name_is_filled_out = !empty($monster_request['name']) && empty($monster_request['amount']);
-                $name_and_amount_are_null = empty($monster_request['name']) && empty($monster_request['amount']);
-                //片方のみ入力が一個でもある時点でformに戻る
-                if ($only_monster_amount_is_filled_out || $only_monster_name_is_filled_out) {
-                    $request->validate([
-                        'monster_requests.'.$monster_request_key.'.name' => ['required'],
-                        'monster_requests.'.$monster_request_key.'.amount' => ['required'],
-                    ], [
-                        'monster_requests.'.$monster_request_key.'.name.required' => '求のモンスター名が未入力です',
-                        'monster_requests.'.$monster_request_key.'.amount.required' => '求の個数が未入力です',
-                    ]);
-                }
-                if($name_and_amount_are_null){
-                    $request_null_count++;
-                }
-            }
-            // dd($request_null_count);
+            $monster_requests_without_null=$this->validate_post_or_negotiation_monster_request_and_return_collection($request);
             //出のvalidation
-            foreach ($request->monster_gives as $monster_give) {
-                //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
-                $only_monster_amount_is_filled_out = empty($monster_give['name']) && !empty($monster_give['amount']);
-                $only_monster_name_is_filled_out = !empty($monster_give['name']) && empty($monster_give['amount']);
-                $name_and_amount_are_null = empty($monster_give['name']) && empty($monster_give['amount']);
-                //片方のみ入力が一個でもある時点でformに戻る
-                if ($only_monster_amount_is_filled_out || $only_monster_name_is_filled_out) {
-                    $request->validate([
-                        'monster_gives.*.name' => ['required'],
-                        'monster_gives.*.amount' => ['required']
-                    ], [
-                        'monster_gives.*.name.required' => '出のモンスター名が未入力です',
-                        'monster_gives.*.amount.required' => '出の個数が未入力です'
-                    ]);
-                }
-                if($name_and_amount_are_null){
-                    $give_null_count++;
-                }
-            }
-            // dd($request);
+            $monster_gives_without_null=$this->validate_post_or_negotiation_monster_give_and_return_collection($request);
             //出・求両方未入力の場合
-            if(count($request->monster_requests)-$request_null_count===0&&count($request->monster_gives)-$give_null_count===0){
-                // dd($request);
-                //errorを投げる関数
-                //はじく
+            $both_monster_requests_and_monster_gives_are_empty=count($monster_requests_without_null) === 0 && count($monster_gives_without_null) === 0;
+            if ($both_monster_requests_and_monster_gives_are_empty) {
+                $errors = new MessageBag();
+                $errors->add('', '出・求が両方とも空です');
+                return redirect($previous_url)->withErrors($errors);
             }
-        }else{
+        } else {
             //返信
         }
-        $post = new TradeBoardPost;
-        $post->user_id = Auth::id();
-        $post->description = $request->description;
-        $post->parent_trade_board_post_id = $request->parent_trade_board_post_id;
-        $post->allow_show_pad_id_bool = ($request->allow_show_pad_id_bool === 'on') ? 1 : 0;
-        $post->depth = $request->depth;
-        $post->is_only_description = $request->is_only_description;
-        $post->save();
-        // $post->created_at=Carbon::now();
-        // $post->updated_at=null;
-        $previous_url = app('url')->previous();
+        $post_id=$this->insert_into_trade_board_posts_and_return_id($request);
+        $this->insert_into_trade_post_requests($post_id,$monster_requests_without_null);
+        $this->insert_into_trade_post_gives($post_id,$monster_gives_without_null);
+        $this->delete_entered_data_from_session();
         return redirect()->to($previous_url);
     }
 
@@ -160,5 +120,129 @@ class TradeBoardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Insert data into trade_post_requests table
+     * 
+     * @param int $trade_board_post_id
+     * @param collection $monster_requests
+     */
+    public function insert_into_trade_post_requests($trade_board_post_id,$monster_requests){
+        foreach($monster_requests as $monster_request){
+            $trade_post_request=new TradePostRequest;
+            $trade_post_request->trade_board_post_id=$trade_board_post_id;
+            $trade_post_request->monster_name=$monster_request['name'];
+            $trade_post_request->monster_amount=$monster_request['amount'];
+            $trade_post_request->save();
+        }
+    }
+
+    /**
+     * Insert data into trade_post_gives table
+     * 
+     * @param int $trade_board_post_id
+     * @param collection $monster_gives
+     */
+    public function insert_into_trade_post_gives($trade_board_post_id,$monster_gives){
+        foreach($monster_gives as $monster_give){
+            $trade_post_give=new TradePostGive;
+            $trade_post_give->trade_board_post_id=$trade_board_post_id;
+            $trade_post_give->monster_name=$monster_give['name'];
+            $trade_post_give->monster_amount=$monster_give['amount'];
+            $trade_post_give->save();
+        }
+    }
+
+    /**
+     * save entered data to session
+     * @param \Illuminate\Http\Request $request
+     */
+    public function save_entered_data_to_session($request){
+        session()->put('monster_requests', $request->monster_requests);
+        session()->put('monster_gives', $request->monster_gives);
+        session()->put('description',$request->description);
+        session()->put('allow_show_pad_id_bool',$request->allow_show_pad_id_bool);
+    }
+
+    /**
+     * delete entered data from session
+     */
+    public function delete_entered_data_from_session(){
+        session()->forget('monster_requests');
+        session()->forget('monster_gives');
+        session()->forget('description');
+        session()->forget('allow_show_pad_id_bool');
+    }
+
+    /**
+     * validate entered data for post or negotiation monster request
+     * 
+     */
+    public function validate_post_or_negotiation_monster_request_and_return_collection($request){
+        $monster_requests_without_null = [];
+        foreach ($request->monster_requests as $monster_request_key => $monster_request) {
+            //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
+            $only_monster_amount_is_filled_out = empty($monster_request['name']) && !empty($monster_request['amount']);
+            $only_monster_name_is_filled_out = !empty($monster_request['name']) && empty($monster_request['amount']);
+            $name_and_amount_are_null = empty($monster_request['name']) && empty($monster_request['amount']);
+            //片方のみ入力が一個でもある時点でformに戻る
+            if ($only_monster_amount_is_filled_out || $only_monster_name_is_filled_out) {
+                $request->validate([
+                    'monster_requests.' . $monster_request_key . '.name' => ['required'],
+                    'monster_requests.' . $monster_request_key . '.amount' => ['required'],
+                ], [
+                    'monster_requests.' . $monster_request_key . '.name.required' => '求のモンスター名が未入力です',
+                    'monster_requests.' . $monster_request_key . '.amount.required' => '求の個数が未入力です',
+                ]);
+            }
+            if(!$name_and_amount_are_null){
+                array_push($monster_requests_without_null, $monster_request);
+            }
+        }
+        return $monster_requests_without_null;
+    }
+    /**
+     * validate entered data for post or negotiation monster give
+     * 
+     */
+    public function validate_post_or_negotiation_monster_give_and_return_collection($request){
+        $monster_gives_without_null = [];
+        foreach ($request->monster_gives as $monster_give_key => $monster_give) {
+            //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
+            $only_monster_amount_is_filled_out = empty($monster_give['name']) && !empty($monster_give['amount']);
+            $only_monster_name_is_filled_out = !empty($monster_give['name']) && empty($monster_give['amount']);
+            $name_and_amount_are_null = empty($monster_give['name']) && empty($monster_give['amount']);
+            //片方のみ入力が一個でもある時点でformに戻る
+            if ($only_monster_amount_is_filled_out || $only_monster_name_is_filled_out) {
+                $request->validate([
+                    'monster_gives.' . $monster_give_key . '.name' => ['required'],
+                    'monster_gives.' . $monster_give_key . '.amount' => ['required']
+                ], [
+                    'monster_gives.' . $monster_give_key . '.name.required' => '出のモンスター名が未入力です',
+                    'monster_gives.' . $monster_give_key . '.amount.required' => '出の個数が未入力です'
+                ]);
+            }
+            if(!$name_and_amount_are_null){
+                array_push($monster_gives_without_null, $monster_give);
+            }
+        }
+        return $monster_gives_without_null;
+    }
+
+    /**
+     * insert into trade_board_posts table
+     * @param \Illuminate\Http\Request $request
+     */
+    public function insert_into_trade_board_posts_and_return_id($request){
+        $post = new TradeBoardPost;
+        $post->user_id = Auth::id();
+        $post->description = $request->description;
+        $post->parent_trade_board_post_id = $request->parent_trade_board_post_id;
+        $post->allow_show_pad_id_bool = ($request->allow_show_pad_id_bool === 'on') ? 1 : 0;
+        $post->depth = $request->depth;
+        $post->is_only_description = $request->is_only_description;
+        $post->save();
+        return $post->id;
     }
 }

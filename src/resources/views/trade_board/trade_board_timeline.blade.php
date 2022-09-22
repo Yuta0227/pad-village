@@ -35,8 +35,8 @@
         <div>
             <div>求</div>
             <div id="container_for_monster_requests" style="gap:10px;display:flex;flex-direction:column;">
-                @if (null !== old('monster_requests'))
-                    @foreach (old('monster_requests') as $old_monster_request)
+                @if (session()->has('monster_requests'))
+                    @foreach (session()->get('monster_requests') as $old_monster_request)
                         <div style="display:flex;" id="request_box{{ $loop->index }}">
                             <div>
                                 <label style="display:block;">名前：<input class="monster_requests_name"
@@ -68,8 +68,8 @@
         <div>
             <div>出</div>
             <div id="container_for_monster_gives" style="gap:10px;display:flex;flex-direction:column;">
-                @if (null !== old('monster_gives'))
-                    @foreach (old('monster_gives') as $old_monster_give)
+                @if (session()->has('monster_gives'))
+                    @foreach (session()->get('monster_gives') as $old_monster_give)
                         <div style="display:flex;" id="give_box{{ $loop->index }}">
                             <div>
                                 <label style="display:block;">名前：<input class="monster_gives_name"
@@ -98,13 +98,17 @@
             </div>
             <div id="increase_monster_gives">出を増やす</div>
         </div>
-        <textarea name="description" rows="8">{{ old('description') }}</textarea>
-        <label>
-            @if (old('allow_show_pad_id_bool') === 'on')
-                <input type="checkbox" name="allow_show_pad_id_bool" checked>
-            @else
-                <input type="checkbox" name="allow_show_pad_id_bool">
+        <textarea name="description" rows="8">
+            @if (session()->has('description'))
+            {{ session()->get('description') }}
             @endif
+        </textarea>
+        <label>
+            <input type="checkbox" name="allow_show_pad_id_bool"
+                @if (session()->has('allow_show_pad_id_bool')) @if (session()->get('allow_show_pad_id_bool') === 'on')
+                checked @endif
+                @endif
+            >
             フレンドID公開する
         </label>
         <input type="submit" value="送信">
