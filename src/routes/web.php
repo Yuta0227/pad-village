@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\TradeBoardController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,16 +30,10 @@ Route::post('/chats/{chat_id}/timeline',function($chat_id){
     //一旦view直接返す
 })->name('reply_to_chats');
 
-Route::get('/boards/trade/timeline',function(){
-    return view('trade_board.trade_board_timeline');
-})->name('view_trade_board_timeline');
+Route::resource('/boards/trade','TradeBoardController');
 
-Route::post('/boards/trade/timeline',function(){
-    return view('trade_board.trade_board_timeline');
-})->name('post_to_trade_board_timeline');
 
-Route::get('/boards/trade/thread/{parent_trade_post_id}',function(){
-    return view('trade_board.trade_board_thread');
-})->name('view_trade_board_thread');
+
+
 
 require __DIR__.'/auth.php';
