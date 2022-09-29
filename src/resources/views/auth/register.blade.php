@@ -49,7 +49,7 @@
             </div>
 
             <!-- Notification Setting -->
-            <div class="block mt-4">
+            {{-- <div class="block mt-4">
                 <label for="all_notifications_are_on" class="inline-flex items-center">
                     <input type="hidden" name="all_notifications_are_on" value="0">
                     <input id="all_notifications_are_on" type="checkbox"
@@ -57,7 +57,7 @@
                         name="all_notifications_are_on" value="1">
                     <span class="ml-2 text-sm text-gray-600">{{ __('パズ村から通知を受け取る') }}</span>
                 </label>
-            </div>
+            </div> --}}
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'pad_id' => ['required', 'digits:9'],
-            'all_notifications_are_on' => ['required', 'boolean'],
+            // 'all_notifications_are_on' => ['required', 'boolean'], // 今回はfalseで固定する
         ]);
 
         $user = User::create([
@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'pad_id' => $request->pad_id,
             'is_admin' => false,
-            'all_notifications_are_on' => $request->all_notifications_are_on,
+            'all_notifications_are_on' => false, // 今後実装する
         ]);
 
         event(new Registered($user));
