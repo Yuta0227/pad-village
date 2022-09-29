@@ -38,13 +38,17 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end">
+            <div class="flex items-center justify-end mt-4">
                 {{-- @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900"
                         href="{{ route('password.request') }}">
                         {{ __('パスワードを忘れた方はこちら') }}
                     </a>
                 @endif --}}
+
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __('村人登録はこちら') }}
+                </a>
 
                 <x-button class="ml-3">
                     {{ __('村に入る') }}
