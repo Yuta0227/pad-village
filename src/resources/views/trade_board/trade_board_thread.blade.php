@@ -1,7 +1,7 @@
 @extends('layouts.user_page')
 @section('content')
-    <div class="h-8">
-        <h2 class="flex ml-5 font-bold fixed w-full bg-blue-50 text-sm">
+    <div class="h-8" id="title">
+        <h2 class="flex ml-5 font-bold text-sm fixed w-full bg-blue-50">
             <a @if (empty($post->parent_trade_board_post_id)) href="/boards/trade"
             @else
             href="/boards/trade/{{ $post->parent_trade_board_post_id }}" @endif
@@ -9,6 +9,17 @@
             <span>スレッド</span>
         </h2>
     </div>
+    <section id="post_trade_form_section"
+        style="z-index:100;height:100vh;overflow-y:scroll;position:fixed;overscroll-behavior-y:none;"
+        class="hidden bg-blue-50 w-full">
+        <button id="close_form">
+            <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
+        </button>
+        <x-trade-post-form>
+            <input hidden value="{{ $post->id }}" name="parent_trade_board_post_id">
+            <input hidden value="{{ $post->depth + 1 }}" name="depth">
+        </x-trade-post-form>
+    </section>
     <section class="px-5 pb-8">
         <x-trade-post-card :post="$post" />
         <section class="flex flex-col gap-5 mt-5 pt-5 border-t-2 border-gray-400">
@@ -21,7 +32,8 @@
         {{-- 投稿or返信はモーダル内で選べる --}}
         <img src="{{ asset('img/plus.svg') }}" alt="plus" width="28">
     </button>
-    <form id="" hidden action="/boards/trade/create">
     </form>
     </div>
+
+    @vite(['resources/js/trade_board.js'])
 @endsection
