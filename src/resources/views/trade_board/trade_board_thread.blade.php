@@ -1,6 +1,6 @@
 @extends('layouts.user_page')
 @section('content')
-    <div class="h-8" id="title_thread">
+    <div class="h-8" id="title">
         <h2 class="flex ml-5 font-bold fixed w-full bg-blue-50">
             <a @if (empty($post->parent_trade_board_post_id)) href="/boards/trade"
             @else
@@ -34,18 +34,6 @@
     </button>
     </form>
     </div>
-    <script>
-        document.getElementById('open_post_trade_form').addEventListener('click', function() {
-            document.getElementById('title_thread').classList.add('hidden');
-            document.getElementById('post_trade_form_section').classList.remove('hidden');
-            document.getElementById('open_post_trade_form').classList.add('hidden');
-            document.getElementById('all_posts').style.overflow = 'hidden';
-        });
-        document.getElementById('close_form').addEventListener('click', function() {
-            document.getElementById('title_thread').classList.remove('hidden');
-            document.getElementById('post_trade_form_section').classList.add('hidden');
-            document.getElementById('open_post_trade_form').classList.remove('hidden');
-            document.getElementById('all_posts').style.overflow = 'auto';
-        });
-    </script>
+
+    @vite(['resources/js/trade_board.js'])
 @endsection
