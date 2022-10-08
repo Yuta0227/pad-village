@@ -4,14 +4,14 @@
         @if (!Auth::check())
             <a href="{{ route('login') }}" class="bg-blue-500 flex gap-1 px-2 rounded-lg ml-auto">
                 <img src="{{ asset('img/enter_village.svg') }}" width="20">
-                <span class="text-white font-bold text-sm leading-8">村に入る</span>
+                <span class="text-white font-bold text-xs leading-8">村に入る</span>
             </a>
         @else
             <form action="{{ route('logout') }}" method="POST" class="ml-auto">
                 @csrf
                 <button type="submit" class="bg-blue-500 flex gap-1 px-2 rounded-lg items-center">
                     <img src="{{ asset('img/leave_village.svg') }}" width="20">
-                    <span class="text-white font-bold text-sm leading-8">村を出る</span>
+                    <span class="text-white font-bold text-xs leading-8">村を出る</span>
                 </button>
             </form>
         @endif

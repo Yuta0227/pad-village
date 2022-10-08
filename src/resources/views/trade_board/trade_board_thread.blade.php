@@ -1,7 +1,7 @@
 @extends('layouts.user_page')
 @section('content')
     <div class="h-8">
-        <h2 class="flex ml-5 font-bold fixed w-full bg-blue-50">
+        <h2 class="flex ml-5 font-bold fixed w-full bg-blue-50 text-sm">
             <a @if (empty($post->parent_trade_board_post_id)) href="/boards/trade"
             @else
             href="/boards/trade/{{ $post->parent_trade_board_post_id }}" @endif

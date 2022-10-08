@@ -6,7 +6,7 @@
 @extends('layouts.user_page')
 @section('content')
     <div class="h-8" id="title_timeline">
-        <h2 class="h-8 ml-5 font-bold fixed w-full bg-blue-50">タイムライン</h2>
+        <h2 class="h-8 ml-5 font-bold text-sm fixed w-full bg-blue-50">タイムライン</h2>
     </div>
     <section id="post_trade_form_section"
         style="z-index:100;height:100vh;overflow-y:scroll;position:fixed;overscroll-behavior-y:none;"
@@ -111,7 +111,7 @@
         @foreach ($posts as $post)
             <x-trade-post-card :post="$post">
                 <div class="mt-2">
-                    <a class="underline text-blue-500" href="/boards/trade/{{ $post->id }}">
+                    <a class="underline text-blue-500 text-sm" href="/boards/trade/{{ $post->id }}">
                         スレッドで返信する
                     </a>
                 </div>
