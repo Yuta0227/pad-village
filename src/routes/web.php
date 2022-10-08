@@ -14,26 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/boards/trade');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/chats/{chat_id}/timeline',function($chat_id){
-    return view('chats.chats_timeline',compact('chat_id'));
+Route::get('/chats/{chat_id}/timeline', function ($chat_id) {
+    return view('chats.chats_timeline', compact('chat_id'));
 });
 
-Route::post('/chats/{chat_id}/timeline',function($chat_id){
-    return view('chats.chats_timeline',compact('chat_id'));
+Route::post('/chats/{chat_id}/timeline', function ($chat_id) {
+    return view('chats.chats_timeline', compact('chat_id'));
     //一旦view直接返す
 })->name('reply_to_chats');
 
-Route::resource('/boards/trade','TradeBoardController');
+Route::resource('/boards/trade', 'TradeBoardController');
 
 
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
