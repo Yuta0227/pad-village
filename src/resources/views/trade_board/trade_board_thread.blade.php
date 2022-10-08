@@ -34,19 +34,6 @@
     </button>
     </form>
     </div>
-    {{-- <script>
-        document.getElementById('open_post_trade_form').addEventListener('click', function() {
-            document.getElementById('title').classList.add('hidden');
-            document.getElementById('post_trade_form_section').classList.remove('hidden');
-            document.getElementById('open_post_trade_form').classList.add('hidden');
-            document.getElementById('all_posts').style.overflow = 'hidden';
-        });
-        document.getElementById('close_form').addEventListener('click', function() {
-            document.getElementById('title').classList.remove('hidden');
-            document.getElementById('post_trade_form_section').classList.add('hidden');
-            document.getElementById('open_post_trade_form').classList.remove('hidden');
-            document.getElementById('all_posts').style.overflow = 'auto';
-        });
-    </script> --}}
+
     @vite(['resources/js/trade_board.js'])
 @endsection
