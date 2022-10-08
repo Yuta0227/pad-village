@@ -11,7 +11,11 @@
     </div>
     <section id="post_trade_form_section"
         style="z-index:100;height:100vh;overflow-y:scroll;position:fixed;overscroll-behavior-y:none;"
-        class="hidden bg-blue-50 w-full">
+        class="
+        @if(!isset($_GET['modal_open']))
+        {{ 'hidden' }}
+        @endif        
+        bg-blue-50 w-full">
         <button id="close_form">
             <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
         </button>
