@@ -8,9 +8,7 @@
     <div class="h-8" id="title">
         <h2 class="h-8 ml-5 font-bold text-sm fixed w-full bg-blue-50">タイムライン</h2>
     </div>
-    <section id="post_trade_form_section"
-        style="z-index:100;height:100vh;overflow-y:scroll;position:fixed;overscroll-behavior-y:none;"
-        class="hidden bg-blue-50 w-full">
+    <section id="post_trade_form_section" class="hidden bg-blue-50 w-full z-50 h-screen overflow-y-scroll fixed">
         <button id="close_form">
             <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
         </button>
