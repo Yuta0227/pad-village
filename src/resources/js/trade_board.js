@@ -44,34 +44,15 @@ document.getElementById('increase_monster_gives').addEventListener('click', func
         </div>`);
 });
 
-function disableScroll(event) {
-    event.preventDefault();
-}
 document.getElementById('open_post_trade_form').addEventListener('click', function() {
     document.getElementById('title').classList.add('hidden');
     document.getElementById('post_trade_form_section').classList.remove('hidden');
     document.getElementById('open_post_trade_form').classList.add('hidden');
-    document.getElementById('all_posts').style.overflow = 'hidden';
+    document.querySelector('body').style.overflow = 'hidden';
 });
 document.getElementById('close_form').addEventListener('click', function() {
     document.getElementById('title').classList.remove('hidden');
     document.getElementById('post_trade_form_section').classList.add('hidden');
     document.getElementById('open_post_trade_form').classList.remove('hidden');
-    document.getElementById('all_posts').style.overflow = 'auto';
-});
-document.addEventListener('scroll', function() {
-    //     if(document.getElementById('all_posts').style.overflow=='hidden'){
-    //         console.log('ok');
-    //         document.addEventListener('touchmove',disableScroll,{passive:false})
-    //     }
-
-    if (document.getElementById('all_posts').style.overflow == 'hidden') {
-        document.addEventListener('touchmove', disableScroll, {
-            passive: false
-        });
-        document.addEventListener('mousewheel', disableScroll, {
-            passive: false
-        });
-        // document.getElementById('all_posts').style.overflowY='hidden';
-    }
+    document.querySelector('body').style.overflow = 'auto';
 });
