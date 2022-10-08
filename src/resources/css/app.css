@@ -1,3 +1,9 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+#container_for_monster_requests > div + div{
+    border-top:1px solid black;
+}
+#container_for_monster_gives > div + div{
+    border-top:1px solid black;
+}
