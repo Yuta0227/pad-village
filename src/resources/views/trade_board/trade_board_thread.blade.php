@@ -11,11 +11,15 @@
     </div>
     <section id="post_trade_form_section"
         style="z-index:100;height:100vh;overflow-y:scroll;position:fixed;overscroll-behavior-y:none;"
-        class="hidden bg-blue-50 w-full">
+        class="
+        @if(!session()->has('modal_is_open'))
+        {{ 'hidden' }}
+        @endif       
+        bg-blue-50 w-full">
         <button id="close_form">
             <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
         </button>
-        <x-trade-post-form>
+        <x-trade-post-form :old_monster_requests="$old_monster_requests" :old_monster_gives="$old_monster_gives">
             <input hidden value="{{ $post->id }}" name="parent_trade_board_post_id">
             <input hidden value="{{ $post->depth + 1 }}" name="depth">
         </x-trade-post-form>
@@ -34,6 +38,5 @@
     </button>
     </form>
     </div>
-
-    @vite(['resources/js/trade_board.js'])
+    <script src="{{ asset('js/trade_board.js') }}"></script>
 @endsection
