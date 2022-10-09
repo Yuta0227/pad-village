@@ -21,34 +21,34 @@ class TradeBoardController extends Controller
      */
     public function index()
     {
-        if(session()->has('monster_requests')){
-            $old_monster_requests=$this->format_monster_request_post(session()->get('monster_requests'));
-            if(empty($old_monster_requests)){
+        if (session()->has('monster_requests')) {
+            $old_monster_requests = $this->format_monster_request_post(session()->get('monster_requests'));
+            if (empty($old_monster_requests)) {
                 //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
-                $old_monster_requests=[
-                    ['name'=>'','amount'=>'']
+                $old_monster_requests = [
+                    ['name' => '', 'amount' => '']
                 ];
             }
-        }else{
-            $old_monster_requests=[
-                ['name'=>'','amount'=>'']
+        } else {
+            $old_monster_requests = [
+                ['name' => '', 'amount' => '']
             ];
         }
-        if(session()->has('monster_gives')){
-            $old_monster_gives=$this->format_monster_give_post(session()->get('monster_gives'));
+        if (session()->has('monster_gives')) {
+            $old_monster_gives = $this->format_monster_give_post(session()->get('monster_gives'));
             //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
-            if(empty($old_monster_gives)){
-                $old_monster_gives=[
-                    ['name'=>'','amount'=>'']
+            if (empty($old_monster_gives)) {
+                $old_monster_gives = [
+                    ['name' => '', 'amount' => '']
                 ];
             }
-        }else{
-            $old_monster_gives=[
-                ['name'=>'','amount'=>'']
+        } else {
+            $old_monster_gives = [
+                ['name' => '', 'amount' => '']
             ];
         }
         $posts = TradeBoardPost::posts_for_timeline()->with('trade_post_gives')->with('trade_post_requests')->with('user')->get();
-        return view('/trade_board/trade_board_timeline', compact('posts','old_monster_requests','old_monster_gives'));
+        return view('/trade_board/trade_board_timeline', compact('posts', 'old_monster_requests', 'old_monster_gives'));
     }
 
     /**
@@ -69,14 +69,14 @@ class TradeBoardController extends Controller
      */
     public function store(Request $request)
     {
-        session()->flash('modal_is_open',true);
-        $previous_url = app('url')->previous() ;        
+        session()->flash('modal_is_open', true);
+        $previous_url = app('url')->previous();
         $this->save_entered_data_to_session($request);
         if (!Auth::check()) {
             //ログインページに遷移させるとりあえずもとにもどしてる
             $errors = new MessageBag();
             $errors->add('', 'ログインしてから投稿してください');
-            session()->put('open_modal',true);
+            session()->put('open_modal', true);
             return redirect($previous_url)->withErrors($errors);
         }
         $restrict_only_description = $request->depth == 0;
@@ -188,7 +188,7 @@ class TradeBoardController extends Controller
             }
         }
         $this->delete_entered_data_from_session();
-        // session()->forget('modal_is_open');
+        session()->forget('modal_is_open');
         return redirect()->to($previous_url);
     }
 
@@ -200,35 +200,35 @@ class TradeBoardController extends Controller
      */
     public function show($id)
     {
-        if(session()->has('monster_requests')){
-            $old_monster_requests=$this->format_monster_request_post(session()->get('monster_requests'));
-            if(empty($old_monster_requests)){
+        if (session()->has('monster_requests')) {
+            $old_monster_requests = $this->format_monster_request_post(session()->get('monster_requests'));
+            if (empty($old_monster_requests)) {
                 //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
-                $old_monster_requests=[
-                    ['name'=>'','amount'=>'']
+                $old_monster_requests = [
+                    ['name' => '', 'amount' => '']
                 ];
             }
-        }else{
-            $old_monster_requests=[
-                ['name'=>'','amount'=>'']
+        } else {
+            $old_monster_requests = [
+                ['name' => '', 'amount' => '']
             ];
         }
-        if(session()->has('monster_gives')){
-            $old_monster_gives=$this->format_monster_give_post(session()->get('monster_gives'));
+        if (session()->has('monster_gives')) {
+            $old_monster_gives = $this->format_monster_give_post(session()->get('monster_gives'));
             //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
-            if(empty($old_monster_gives)){
-                $old_monster_gives=[
-                    ['name'=>'','amount'=>'']
+            if (empty($old_monster_gives)) {
+                $old_monster_gives = [
+                    ['name' => '', 'amount' => '']
                 ];
             }
-        }else{
-            $old_monster_gives=[
-                ['name'=>'','amount'=>'']
+        } else {
+            $old_monster_gives = [
+                ['name' => '', 'amount' => '']
             ];
         }
         $post = TradeBoardPost::with('trade_post_gives')->with('trade_post_requests')->with('user')->find($id);
         $replies = TradeBoardPost::replies_for_post($id)->with('trade_post_gives')->with('trade_post_requests')->with('user')->get();
-        return view('/trade_board/trade_board_thread', compact('post', 'replies','old_monster_requests','old_monster_gives'));
+        return view('/trade_board/trade_board_thread', compact('post', 'replies', 'old_monster_requests', 'old_monster_gives'));
     }
 
     /**
