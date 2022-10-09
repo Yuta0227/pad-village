@@ -18,7 +18,7 @@
         <button id="close_form">
             <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
         </button>
-        <x-trade-post-form>
+        <x-trade-post-form :old_monster_requests="$old_monster_requests" :old_monster_gives="$old_monster_gives">
             <input hidden value="" name="parent_trade_board_post_id">
             <input hidden value="0" name="depth">
         </x-trade-post-form>
@@ -37,6 +37,5 @@
     <button id="open_post_trade_form" class="fixed bottom-10 right-8 bg-blue-500 rounded-full p-4 shadow-md drop-shadow-md">
         <img src="{{ asset('img/plus.svg') }}" alt="plus" width="28">
     </button>
-
-    @vite(['resources/js/trade_board.js'])
+    <script src="{{ asset('js/trade_board.js') }}"></script>
 @endsection

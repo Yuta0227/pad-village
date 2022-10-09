@@ -21,8 +21,34 @@ class TradeBoardController extends Controller
      */
     public function index()
     {
+        if(session()->has('monster_requests')){
+            $old_monster_requests=$this->format_monster_request_post(session()->get('monster_requests'));
+            if(empty($old_monster_requests)){
+                //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
+                $old_monster_requests=[
+                    ['name'=>'','amount'=>'']
+                ];
+            }
+        }else{
+            $old_monster_requests=[
+                ['name'=>'','amount'=>'']
+            ];
+        }
+        if(session()->has('monster_gives')){
+            $old_monster_gives=$this->format_monster_give_post(session()->get('monster_gives'));
+            //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
+            if(empty($old_monster_gives)){
+                $old_monster_gives=[
+                    ['name'=>'','amount'=>'']
+                ];
+            }
+        }else{
+            $old_monster_gives=[
+                ['name'=>'','amount'=>'']
+            ];
+        }
         $posts = TradeBoardPost::posts_for_timeline()->with('trade_post_gives')->with('trade_post_requests')->with('user')->get();
-        return view('/trade_board/trade_board_timeline', compact('posts'));
+        return view('/trade_board/trade_board_timeline', compact('posts','old_monster_requests','old_monster_gives'));
     }
 
     /**
@@ -41,16 +67,9 @@ class TradeBoardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
-    //validation自体はできてもredirectができないメソッドとして呼び出してreturnしてるだけだから
-    //store野中でredirectの処理をなんとかいれたい
-    //witherrorだと変数使えない可能性あり
-    //messagebagでなんとかできないかな
-
     public function store(Request $request)
     {
-        session()->put('modal_is_open',true);
+        session()->flash('modal_is_open',true);
         $previous_url = app('url')->previous() ;        
         $this->save_entered_data_to_session($request);
         if (!Auth::check()) {
@@ -64,7 +83,7 @@ class TradeBoardController extends Controller
         //タイムラインの投稿の場合
         if ($restrict_only_description) {
             //求のformat
-            $monster_requests_without_null = $this->format_monster_request_post($request);
+            $monster_requests_without_null = $this->format_monster_request_post($request->monster_requests);
             //求のvalidation
             if (!empty($monster_requests_without_null)) {
                 foreach ($monster_requests_without_null as $monster_request_key => $monster_request) {
@@ -83,10 +102,10 @@ class TradeBoardController extends Controller
                 }
             }
             //出のformat
-            $monster_gives_without_null = $this->format_monster_give_post($request);
+            $monster_gives_without_null = $this->format_monster_give_post($request->monster_gives);
             //出のvalidation
             if (!empty($monster_gives_without_null)) {
-                foreach ($monster_gives_without_null as $monster_give_key => $monster_give) {
+                foreach ($monster_gives_without_null as $monster_give) {
                     $validation_rules = [
                         'name' => 'required',
                         'amount' => 'required'
@@ -117,7 +136,7 @@ class TradeBoardController extends Controller
             $post_is_not_only_description = $this->post_is_not_only_description($request);
             if ($post_is_not_only_description) {
                 //求のformat
-                $monster_requests_without_null = $this->format_monster_request_post($request);
+                $monster_requests_without_null = $this->format_monster_request_post($request->monster_requests);
                 //求のvalidation
                 if (!empty($monster_requests_without_null)) {
                     foreach ($monster_requests_without_null as $monster_request_key => $monster_request) {
@@ -136,7 +155,7 @@ class TradeBoardController extends Controller
                     }
                 }
                 //出のformat
-                $monster_gives_without_null = $this->format_monster_give_post($request);
+                $monster_gives_without_null = $this->format_monster_give_post($request->monster_gives);
                 //出のvalidation
                 if (!empty($monster_gives_without_null)) {
                     foreach ($monster_gives_without_null as $monster_give_key => $monster_give) {
@@ -169,7 +188,7 @@ class TradeBoardController extends Controller
             }
         }
         $this->delete_entered_data_from_session();
-        session()->forget('modal_is_open');
+        // session()->forget('modal_is_open');
         return redirect()->to($previous_url);
     }
 
@@ -181,9 +200,35 @@ class TradeBoardController extends Controller
      */
     public function show($id)
     {
+        if(session()->has('monster_requests')){
+            $old_monster_requests=$this->format_monster_request_post(session()->get('monster_requests'));
+            if(empty($old_monster_requests)){
+                //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
+                $old_monster_requests=[
+                    ['name'=>'','amount'=>'']
+                ];
+            }
+        }else{
+            $old_monster_requests=[
+                ['name'=>'','amount'=>'']
+            ];
+        }
+        if(session()->has('monster_gives')){
+            $old_monster_gives=$this->format_monster_give_post(session()->get('monster_gives'));
+            //form送信時空っぽだとinputが消えてしまうため最低空のinputが一個あるようにする
+            if(empty($old_monster_gives)){
+                $old_monster_gives=[
+                    ['name'=>'','amount'=>'']
+                ];
+            }
+        }else{
+            $old_monster_gives=[
+                ['name'=>'','amount'=>'']
+            ];
+        }
         $post = TradeBoardPost::with('trade_post_gives')->with('trade_post_requests')->with('user')->find($id);
         $replies = TradeBoardPost::replies_for_post($id)->with('trade_post_gives')->with('trade_post_requests')->with('user')->get();
-        return view('/trade_board/trade_board_thread', compact('post', 'replies'));
+        return view('/trade_board/trade_board_thread', compact('post', 'replies','old_monster_requests','old_monster_gives'));
     }
 
     /**
@@ -280,13 +325,11 @@ class TradeBoardController extends Controller
      * format monster requests and return it
      * 
      */
-    public function format_monster_request_post($request)
+    public function format_monster_request_post($monster_requests)
     {
         $monster_requests_without_null = [];
-        foreach ($request->monster_requests as $monster_request_key => $monster_request) {
+        foreach ($monster_requests as $monster_request) {
             //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
-            $only_monster_amount_is_filled_out = empty($monster_request['name']) && !empty($monster_request['amount']);
-            $only_monster_name_is_filled_out = !empty($monster_request['name']) && empty($monster_request['amount']);
             $name_and_amount_are_null = empty($monster_request['name']) && empty($monster_request['amount']);
             //片方のみ入力が一個でもある時点でformに戻る
             if (!$name_and_amount_are_null) {
@@ -299,13 +342,11 @@ class TradeBoardController extends Controller
      * format monster gives and return it
      * 
      */
-    public function format_monster_give_post($request)
+    public function format_monster_give_post($monster_gives)
     {
         $monster_gives_without_null = [];
-        foreach ($request->monster_gives as $monster_give_key => $monster_give) {
+        foreach ($monster_gives as $monster_give) {
             //名前と数片方入力済み判定＝＞何か書いていた途中であることがわかる
-            $only_monster_amount_is_filled_out = empty($monster_give['name']) && !empty($monster_give['amount']);
-            $only_monster_name_is_filled_out = !empty($monster_give['name']) && empty($monster_give['amount']);
             $name_and_amount_are_null = empty($monster_give['name']) && empty($monster_give['amount']);
             //片方のみ入力が一個でもある時点でformに戻る
             if (!$name_and_amount_are_null) {
