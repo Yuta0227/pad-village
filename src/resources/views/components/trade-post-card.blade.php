@@ -2,16 +2,20 @@
 <section class="bg-white rounded-md p-3">
     <p class="flex">
         <span class="text-gray-400 text-lg" style="font-size:10px;">{{ $post->user->name }}</span>
-        <span style="font-size:10px;" class="text-lg ml-auto text-gray-400">{{ $post->created_at->format('m/d H:i') }}</span>
+        <span style="font-size:10px;"
+            class="text-lg ml-auto text-gray-400">{{ $post->created_at->format('m/d H:i') }}</span>
         {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
     </p>
-    @if (!$post->trade_post_gives->isEmpty() || !$post->trade_post_requests->isEmpty())
+    @if ($post->allow_show_pad_id_bool === 1)
+        {{-- ユーザー登録時パズドラIDが必須だったらこの下のifを消す --}}
         @if (!empty($post->user->pad_id))
             <p class="mt-2">
                 <span class="mr-2 text-gray-400">パズドラID:</span>
                 <span class="font-bold">{{ $post->user->pad_id }}</span>
             </p>
         @endif
+    @endif
+    @if (!$post->trade_post_gives->isEmpty() || !$post->trade_post_requests->isEmpty())
         <div class="flex mt-2">
             <p class="mr-2 text-gray-400">出:</p>
             <ul class="flex gap-2 font-bold flex-wrap max-w-xl">
