@@ -18,9 +18,7 @@ class TradePostRequestFactory extends Factory
      */
     public function definition()
     {
-        $all_monster_name_array=Monster::pluck('name')->toArray();
-        array_push($all_monster_name_array,'プラスポイント');
-        array_push($all_monster_name_array,'ノエル何色でも');
+        $all_monster_name_array=Monster::tradable_monsters();
         $trade_board_posts=TradeBoardPost::where('depth',0)->pluck('id');
         return [
             'trade_board_post_id'=>$this->faker->randomElement($trade_board_posts),

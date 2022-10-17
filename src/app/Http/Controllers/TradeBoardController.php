@@ -69,6 +69,7 @@ class TradeBoardController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         session()->flash('modal_is_open', true);
         $previous_url = app('url')->previous();
         $this->save_entered_data_to_session($request);
@@ -124,7 +125,7 @@ class TradeBoardController extends Controller
             $both_monster_requests_and_monster_gives_are_empty = count($monster_requests_without_null) === 0 && count($monster_gives_without_null) === 0;
             if ($both_monster_requests_and_monster_gives_are_empty) {
                 $errors = new MessageBag();
-                $errors->add('', '出・求が両方とも空です');
+                $errors->add('both_monster_requests_and_monster_gives_are_empty', '出・求が両方とも空です');
                 return redirect($previous_url)->withErrors($errors);
             }
             $post_id = $this->insert_into_trade_board_posts_and_return_id($request);
