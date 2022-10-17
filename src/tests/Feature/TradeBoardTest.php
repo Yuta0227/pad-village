@@ -348,7 +348,7 @@ class TradeBoardTest extends TestCase
         //タイムラインにある投稿を一つ取得
         $post_on_timeline_id = TradeBoardPost::where('depth', 0)->first()->id;
         //タイムラインにある投稿のスレッドにアクセス
-        $this->get('/boards/trade/'.$post_on_timeline_id)->assertStatus(200);
+        $this->get('/boards/trade/' . $post_on_timeline_id)->assertStatus(200);
     }
     public function test_user_can_post_on_thread()
     {

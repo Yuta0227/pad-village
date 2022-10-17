@@ -69,7 +69,6 @@ class TradeBoardController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         session()->flash('modal_is_open', true);
         $previous_url = app('url')->previous();
         $this->save_entered_data_to_session($request);
