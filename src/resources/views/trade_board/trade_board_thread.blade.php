@@ -13,9 +13,19 @@
         class="
         @if (!session()->has('modal_is_open')) {{ 'hidden' }} @endif
         bg-blue-50 w-full z-50 h-screen overflow-y-scroll fixed top-0 px-5 pb-5">
-        <button id="close_form" class="mt-4 mb-4">
-            <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
-        </button>
+        <div class="flex items-center mt-4 mb-6">
+            <button id="close_form">
+                <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
+            </button>
+            @if (!Auth::check())
+                <div class="ml-auto">
+                    <a href="{{ route('login') }}" class="bg-blue-500 flex gap-1 px-2 rounded-lg ml-auto">
+                        <img src="{{ asset('img/enter_village.svg') }}" width="20">
+                        <span class="text-white font-bold text-xs leading-8">村に入る</span>
+                    </a>
+                </div>
+            @endif
+        </div>
         <x-trade-post-form :old_monster_requests="$old_monster_requests" :old_monster_gives="$old_monster_gives">
             <input hidden value="{{ $post->id }}" name="parent_trade_board_post_id">
             <input hidden value="{{ $post->depth + 1 }}" name="depth">

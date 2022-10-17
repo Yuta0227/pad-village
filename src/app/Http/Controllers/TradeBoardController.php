@@ -75,7 +75,7 @@ class TradeBoardController extends Controller
         if (!Auth::check()) {
             //ログインページに遷移させるとりあえずもとにもどしてる
             $errors = new MessageBag();
-            $errors->add('', 'ログインしてから投稿してください');
+            $errors->add('', '村に入ってから投稿してください');
             session()->put('open_modal', true);
             return redirect($previous_url)->withErrors($errors);
         }
