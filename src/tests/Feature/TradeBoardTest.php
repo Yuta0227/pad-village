@@ -33,11 +33,6 @@ class TradeBoardTest extends TestCase
         $this->seed(TradePostRequestsTableSeeder::class);
         $this->seed(TradePostGivesTableSeeder::class);
     }
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_user_can_access_trade_board_timeline()
     {
         $this->get('/boards/trade')->assertStatus(200);
@@ -348,20 +343,12 @@ class TradeBoardTest extends TestCase
         $this->assertDatabaseCount('trade_post_gives', $trade_post_gives_count);
         $this->assertDatabaseCount('trade_post_requests', $trade_post_requests_count);
     }
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_user_can_access_trade_board_thread()
     {
         //タイムラインにある投稿を一つ取得
-        $post_on_timeline = TradeBoardPost::where('depth', 0)->first();
-        // dd($post_on_timeline);
+        $post_on_timeline_id = TradeBoardPost::where('depth', 0)->first()->id;
         //タイムラインにある投稿のスレッドにアクセス
-        $response = $this->get('/boards/trade')->assertStatus(200);
-
-        $response->assertStatus(200);
+        $this->get('/boards/trade/'.$post_on_timeline_id)->assertStatus(200);
     }
     public function test_user_can_post_on_thread()
     {
