@@ -1,8 +1,3 @@
-{{-- コントローラーで何件の返信を数値でプロパティとして各postに追加する --}}
-{{-- parent_chat_post_idがnullのやつだけ取得 --}}
-{{-- DBアクセス回数減らすためにparent_chat_post_idがnullじゃないものをparent_chat_post_idでgroupbyしてそれぞれcountで該当postにプロパティ追加 --}}
-{{-- userの名前も取得してプロパティに追加 --}}
-{{-- created_atはbladeの方で時：分に変える --}}
 @extends('layouts.user_page')
 @section('content')
     <div class="h-8" id="title">
