@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'pad_id',
+        'is_admin',
+        'all_notifications_are_on'
     ];
 
     /**
@@ -41,4 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function trade_board_posts(){
+        return $this->hasMany(TradeBoardPost::class);
+    }
 }

@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('pad_id');
+            $table->boolean('is_admin');
+            $table->boolean('all_notifications_are_on');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
