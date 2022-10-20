@@ -10,7 +10,7 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('名前')" />
+                <x-label for="name" :value="__('ニックネーム')" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
                     autofocus />
@@ -53,7 +53,7 @@
                 <label for="all_notifications_are_on" class="inline-flex items-center">
                     <input type="hidden" name="all_notifications_are_on" value="0">
                     <input id="all_notifications_are_on" type="checkbox"
-                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        class="checkbox"
                         name="all_notifications_are_on" value="1">
                     <span class="ml-2 text-sm text-gray-600">{{ __('パズ村から通知を受け取る') }}</span>
                 </label>

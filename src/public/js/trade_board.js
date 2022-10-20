@@ -1,20 +1,80 @@
+/**
+ * フォーム文字列を生成する
+ * @param {number} index 各フォームの番号
+ * @param {string} formType "request" | "give"
+ * @param {string} monster_name モンスター名
+ * @param {string | number} monster_amount モンスターの数
+ * @returns {string} HTML文字列
+ */
+const FormHtml = (index, formType, monster_name = "", monster_amount = "") => {
+    return `
+    <div id="${formType}_box${index}">
+        <div class="flex flex-wrap">
+            <input class="input w-[calc(100%-96px)] text-sm placeholder:text-gray-400"
+            type="text"
+            name="monster_${formType + "s"}[${index}][name]"
+            value="${monster_name}" placeholder="モンスター名"
+            >
+            <span class="flex items-center justify-center w-6">×</span>
+            <input class="input w-12 text-center text-sm placeholder:text-gray-400"
+            type="number"
+            name="monster_${formType + "s"}[${index}][amount]"
+            value="${monster_amount}" placeholder="1"
+            >
+            ${DeleteButton(index, formType)}
+        </div>
+    </div>
+    `;
+};
+
+/**
+ * 各フォームの削除ボタンを生成する
+ * @param {number} index 各フォームの番号
+ * @param {string} formType "request" | "give"
+ * @returns {string} HTML文字列
+ */
+const DeleteButton = (index, formType) => {
+    return index >= 1
+        ? `
+        <button type="button" class="w-6" onclick="delete_${formType}_box(${index})">
+            <img src="/img/delete_button.svg" class="ml-auto" width="16" />
+        </button>
+        `
+        : `
+        <button type="button" class="w-6" onclick="delete_${formType}_box(${index})">
+            <img src="/img/disabled_delete_button.svg" class="ml-auto" width="16" />
+        </button>
+        `;
+};
+
 //求増やすボタン押すと入力欄増える
-document.getElementById('increase_monster_requests').addEventListener('click', function() {
-    let next_request_box_id_only_number;
-    if (document.getElementById('container_for_monster_requests').childElementCount === 0) {
-        next_request_box_id_only_number = 0;
-    } else {
-        next_request_box_id_only_number = Number(document.getElementById('container_for_monster_requests')
-            .children[document.getElementById('container_for_monster_requests').childElementCount - 1]
-            .id.replace('request_box', ''));
-    }
-    document.getElementById('container_for_monster_requests').insertAdjacentHTML('beforeend', `<div style="display:flex;" id="request_box${next_request_box_id_only_number+1}">
-<div style="display:flex;">
-        <label style="display:block;">名前：<input class="monster_requests_name" id="monster_requests_name${next_request_box_id_only_number+1}" type="text" name="monster_requests[${next_request_box_id_only_number+1}][name]"></label>
-        <label style="display:block;">個数：<input class="monster_requests_amount" id="monster_requests_amount${next_request_box_id_only_number+1}" type="number" name="monster_requests[${next_request_box_id_only_number+1}][amount]"></label>
-        </div>                            <div id="delete${next_request_box_id_only_number+1}" class="delete_request_box" onclick="delete_request_box(${next_request_box_id_only_number+1})">消す</div></div>
-`);
-});
+document
+    .getElementById("increase_monster_requests")
+    .addEventListener("click", function () {
+        let next_request_box_id_only_number;
+        if (
+            document.getElementById("container_for_monster_requests")
+                .childElementCount === 0
+        ) {
+            next_request_box_id_only_number = 0;
+        } else {
+            next_request_box_id_only_number = Number(
+                document
+                    .getElementById("container_for_monster_requests")
+                    .children[
+                        document.getElementById(
+                            "container_for_monster_requests"
+                        ).childElementCount - 1
+                    ].id.replace("request_box", "")
+            );
+        }
+        document
+            .getElementById("container_for_monster_requests")
+            .insertAdjacentHTML(
+                "beforeend",
+                FormHtml(next_request_box_id_only_number + 1, "request")
+            );
+    });
 
 function delete_request_box(id) {
     document.getElementById(`request_box${id}`).remove();
@@ -24,53 +84,56 @@ function delete_give_box(id) {
     document.getElementById(`give_box${id}`).remove();
 }
 //出増やすボタン押すと入力欄増える
-document.getElementById('increase_monster_gives').addEventListener('click', function() {
-    let next_give_box_id_only_number;
-    if (document.getElementById('container_for_monster_gives').childElementCount === 0) {
-        next_give_box_id_only_number = 0;
-    } else {
-        next_give_box_id_only_number = Number(document.getElementById('container_for_monster_gives')
-            .children[document.getElementById('container_for_monster_gives').childElementCount - 1].id
-            .replace('give_box', ''));
-    }
-    document.getElementById('container_for_monster_gives').insertAdjacentHTML('beforeend',
-        `<div style="display:flex;" id="give_box${next_give_box_id_only_number+1}">
-            <div style="display:flex;">
-        <label style="display:block;">名前：<input class="monster_gives_name" id="monster_gives_name${next_give_box_id_only_number+1}" type="text" name="monster_gives[${next_give_box_id_only_number+1}][name]"></label>
-        <label style="display:block;">個数：<input class="monster_gives_amount" id="monster_gives_amount${next_give_box_id_only_number+1}" type="number" name="monster_gives[${next_give_box_id_only_number+1}][amount]"></label>
-        </div>
-        <div class="delete_give_box" onclick="delete_give_box(${next_give_box_id_only_number+1})">消す</div>
-        </div>`);
+document
+    .getElementById("increase_monster_gives")
+    .addEventListener("click", function () {
+        let next_give_box_id_only_number;
+        if (
+            document.getElementById("container_for_monster_gives")
+                .childElementCount === 0
+        ) {
+            next_give_box_id_only_number = 0;
+        } else {
+            next_give_box_id_only_number = Number(
+                document
+                    .getElementById("container_for_monster_gives")
+                    .children[
+                        document.getElementById("container_for_monster_gives")
+                            .childElementCount - 1
+                    ].id.replace("give_box", "")
+            );
+        }
+        document
+            .getElementById("container_for_monster_gives")
+            .insertAdjacentHTML(
+                "beforeend",
+                FormHtml(next_give_box_id_only_number + 1, "give")
+            );
+    });
+
+document
+    .getElementById("open_post_trade_form")
+    .addEventListener("click", function () {
+        document
+            .getElementById("post_trade_form_section")
+            .classList.remove("hidden");
+        document.getElementById("open_post_trade_form").classList.add("hidden");
+        document.querySelector("body").style.overflow = "hidden";
+    });
+document.getElementById("close_form").addEventListener("click", function () {
+    document.getElementById("post_trade_form_section").classList.add("hidden");
+    document.getElementById("open_post_trade_form").classList.remove("hidden");
+    document.querySelector("body").style.overflow = "auto";
 });
 
-function disableScroll(event) {
-    event.preventDefault();
-}
-document.getElementById('open_post_trade_form').addEventListener('click', function() {
-    document.getElementById('title').classList.add('hidden');
-    document.getElementById('post_trade_form_section').classList.remove('hidden');
-    document.getElementById('open_post_trade_form').classList.add('hidden');
-    document.getElementById('all_posts').style.overflow = 'hidden';
-});
-document.getElementById('close_form').addEventListener('click', function() {
-    document.getElementById('title').classList.remove('hidden');
-    document.getElementById('post_trade_form_section').classList.add('hidden');
-    document.getElementById('open_post_trade_form').classList.remove('hidden');
-    document.getElementById('all_posts').style.overflow = 'auto';
-});
-document.addEventListener('scroll', function() {
-    //     if(document.getElementById('all_posts').style.overflow=='hidden'){
-    //         console.log('ok');
-    //         document.addEventListener('touchmove',disableScroll,{passive:false})
-    //     }
-
-    if (document.getElementById('all_posts').style.overflow == 'hidden') {
-        document.addEventListener('touchmove', disableScroll, {
-            passive: false
-        });
-        document.addEventListener('mousewheel', disableScroll, {
-            passive: false
-        });
-        // document.getElementById('all_posts').style.overflowY='hidden';
+/**
+ * 投稿フォームが開いている場合、背景がスクロールしないようにする
+ */
+const disableScrollingIfModalIsOpen = () => {
+    const modal = document.getElementById("post_trade_form_section");
+    if (!modal.classList.contains("hidden")) {
+        document.querySelector("body").style.overflow = "hidden";
     }
-});
+};
+
+window.onload = disableScrollingIfModalIsOpen;

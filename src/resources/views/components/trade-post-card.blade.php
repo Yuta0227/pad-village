@@ -1,24 +1,23 @@
 @props(['post'])
 <section class="bg-white rounded-md p-3">
     <p class="flex">
-        <span class="text-gray-400 text-lg" style="font-size:10px;">{{ $post->user->name }}</span>
-        <span style="font-size:10px;"
-            class="text-lg ml-auto text-gray-400">{{ $post->created_at->format('m/d H:i') }}</span>
+        <span class="text-gray-400 text-xs">{{ $post->user->name }}</span>
+        <span class="text-xs ml-auto text-gray-400">{{ $post->created_at->format('m/d H:i') }}</span>
         {{-- 日付の表示はあとあと時：分に変える https://qiita.com/shimotaroo/items/acd22877a09fb13827fb --}}
     </p>
     @if ($post->allow_show_pad_id_bool === 1)
         {{-- ユーザー登録時パズドラIDが必須だったらこの下のifを消す --}}
         @if (!empty($post->user->pad_id))
-            <p class="mt-2">
-                <span class="mr-2 text-gray-400">パズドラID:</span>
-                <span class="font-bold">{{ $post->user->pad_id }}</span>
+            <p class="mt-2 leading-5">
+                <span class="mr-2 text-sm">パズドラID:</span>
+                <span class="text-sm">{{ $post->user->pad_id }}</span>
             </p>
         @endif
     @endif
     @if (!$post->trade_post_gives->isEmpty() || !$post->trade_post_requests->isEmpty())
-        <div class="flex mt-2">
-            <p class="mr-2 text-gray-400">出:</p>
-            <ul class="flex gap-2 font-bold flex-wrap max-w-xl">
+        <div class="flex mt-2 leading-5">
+            <p class="mr-2 text-sm">出:</p>
+            <ul class="flex gap-2 text-sm flex-wrap max-w-xl">
                 @if (!empty($post->trade_post_gives))
                     @foreach ($post->trade_post_gives as $give)
                         <li class="rounded-md px-1">
@@ -28,9 +27,9 @@
                 @endif
             </ul>
         </div>
-        <div class="flex mt-2">
-            <p class="mr-2 text-gray-400">求:</p>
-            <ul class="flex gap-2 font-bold flex-wrap max-w-xl">
+        <div class="flex mt-2 leading-5">
+            <p class="mr-2 text-sm">求:</p>
+            <ul class="flex gap-2 text-sm flex-wrap max-w-xl">
                 @if (!empty($post->trade_post_requests))
                     @foreach ($post->trade_post_requests as $request)
                         <li class="rounded-md px-1">
@@ -40,10 +39,10 @@
             </ul>
         </div>
         @if ($post->description)
-            <p class="mt-2 bg-gray-100 rounded-md px-2 py-2">{{ $post->description }}</p>
+            <p class="mt-2 bg-gray-100 rounded-md px-2 py-2 text-sm">{{ $post->description }}</p>
         @endif
     @else
-        <p class="mt-2 bg-gray-100 rounded-md px-2 py-2">{{ $post->description }}</p>
+        <p class="mt-2 bg-gray-100 rounded-md px-2 py-2 text-sm">{{ $post->description }}</p>
     @endif
     {{ $slot }}
 </section>

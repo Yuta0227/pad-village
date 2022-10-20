@@ -1,7 +1,7 @@
 @extends('layouts.user_page')
 @section('content')
     <div class="h-8" id="title">
-        <h2 class="flex ml-5 font-bold fixed w-full bg-blue-50">
+        <h2 class="flex ml-5 font-bold text-sm fixed w-full bg-blue-50">
             <a @if (empty($post->parent_trade_board_post_id)) href="/boards/trade"
             @else
             href="/boards/trade/{{ $post->parent_trade_board_post_id }}" @endif
@@ -10,15 +10,22 @@
         </h2>
     </div>
     <section id="post_trade_form_section"
-        style="z-index:100;height:100vh;overflow-y:scroll;position:fixed;overscroll-behavior-y:none;"
         class="
-        @if(!session()->has('modal_is_open'))
-        {{ 'hidden' }}
-        @endif       
-        bg-blue-50 w-full">
-        <button id="close_form">
-            <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
-        </button>
+        @if (!session()->has('modal_is_open')) {{ 'hidden' }} @endif
+        bg-blue-50 w-full z-50 h-screen overflow-y-scroll fixed top-0 px-5 pb-5">
+        <div class="flex items-center mt-4 mb-6">
+            <button id="close_form">
+                <img src="{{ asset('img/close_modal.svg') }}" alt="cross" width="28">
+            </button>
+            @if (!Auth::check())
+                <div class="ml-auto">
+                    <a href="{{ route('login') }}" class="bg-blue-500 flex gap-1 px-2 rounded-lg ml-auto">
+                        <img src="{{ asset('img/enter_village.svg') }}" width="20">
+                        <span class="text-white font-bold text-xs leading-8">村に入る</span>
+                    </a>
+                </div>
+            @endif
+        </div>
         <x-trade-post-form :old_monster_requests="$old_monster_requests" :old_monster_gives="$old_monster_gives">
             <input hidden value="{{ $post->id }}" name="parent_trade_board_post_id">
             <input hidden value="{{ $post->depth + 1 }}" name="depth">
