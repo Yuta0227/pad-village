@@ -4,8 +4,6 @@ setup:
       as: DATABASE
 build:
   docker:
-    release:
-      target: builder
     web: ./web/Dockerfile
     app: ./app/Dockerfile
     db: ./db/Dockerfile
