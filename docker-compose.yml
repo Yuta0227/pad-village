@@ -21,7 +21,7 @@ services:
       - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
     volumes:
       - ./src:/work/backend
-    depends_on: ["db"]
+    # depends_on: ["db"]
   web:
     build:
       context: ./web
@@ -29,7 +29,7 @@ services:
       - 80:80
     volumes:
       - ./src:/work/backend
-    depends_on: ["app"]
+    # depends_on: ["app"]
   mailhog:
     image: mailhog/mailhog
     ports:
