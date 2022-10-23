@@ -93,3 +93,5 @@ mbind: Operation not permitted
 2022-10-23T11:03:27.402086-00:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
 2022-10-23T11:03:27.403199-00:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
 2022-10-23T11:03:27.424675-00:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2022-10-23T11:03:27.497617-00:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2022-10-23T11:03:27.499162-00:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.

@@ -4,8 +4,8 @@ setup:
       as: DATABASE
 build:
   docker:
-    web: ./web/Dockerfile
-    app: ./app/Dockerfile
-    db: ./db/Dockerfile
+    web: ./docker/web/Dockerfile
+    app: ./docker/app/Dockerfile
+    db: ./docker/db/Dockerfile
 run:
   web: bundle exec puma -C config/puma.rb
