@@ -9,3 +9,5 @@ build:
     db: ./docker/db/Dockerfile
 run:
   web: bundle exec puma -C config/puma.rb
+  app: php-fpm
+  db: mysqld
