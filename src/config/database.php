@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Str;
-
-$db=parse_url(env('DATABASE_URL'));
+//https://mysql.jawsdb.com/resource/dashboardからとってくる
+$db=parse_url('mysql://lp6bdmsdfdba4mvm:yvu91dfo87o7jd3k@r98du2bxwqkq3shg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/zy1d6tlgdehbtr19');
 
 return [
 
