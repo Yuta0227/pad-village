@@ -9,5 +9,6 @@ build:
     db: ./docker/db/Dockerfile
 run:
   web: bundle exec puma -C config/puma.rb
+  # webのbundleってやつ原因じゃねbundle not foundとか確か出てるし
   app: php-fpm
   db: mysqld
