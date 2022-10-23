@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "heroku-build":"php artisan migrate && php artisan cache:clear && chmod -R 777 public"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

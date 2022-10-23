@@ -8,7 +8,6 @@ build:
     app: ./docker/app/Dockerfile
     db: ./docker/db/Dockerfile
 run:
-  web: php artisan serve --host=0.0.0.0 --port=$PORT
+  web: exit && php artisan serve --host=0.0.0.0 --port=$PORT
   # web: bundle exec puma -C config/puma.rb
 #   # webのbundleってやつ原因じゃねbundle not foundとか確か出てるし
-  app: php artisan migrate
