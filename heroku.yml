@@ -10,5 +10,5 @@ build:
 run:
   web: bundle exec puma -C config/puma.rb
 #   # webのbundleってやつ原因じゃねbundle not foundとか確か出てるし
-#   app: php-fpm
-#   db: mysqld
+  app: php-fpm
+  db: mysqld
