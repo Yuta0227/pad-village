@@ -7,8 +7,8 @@ build:
     web: ./docker/web/Dockerfile
     app: ./docker/app/Dockerfile
     db: ./docker/db/Dockerfile
-# run:
-#   web: bundle exec puma -C config/puma.rb
+run:
+  web: bundle exec puma -C config/puma.rb
 #   # webのbundleってやつ原因じゃねbundle not foundとか確か出てるし
 #   app: php-fpm
 #   db: mysqld
