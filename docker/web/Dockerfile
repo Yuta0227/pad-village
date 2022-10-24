@@ -16,13 +16,9 @@ COPY --from=node /usr/local/lib /usr/local/lib
 # yarn command
 COPY --from=node /opt /opt
 # nginx config file
-# COPY ./etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY ./etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 # nginx.confを取り込めるようにする
-# COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
-# 8080portをroot以外で待ち受けられるようにする
-EXPOSE 8080
-# super user privilegesを与えない
-USER nginx
+COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /work/backend
  
