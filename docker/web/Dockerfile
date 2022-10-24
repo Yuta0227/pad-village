@@ -20,4 +20,4 @@ COPY ./etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 WORKDIR /work/backend
 
 # git push heroku main したときheroku.ymlのbundleでエラー起きないように
-RUN bundle install 
+# RUN bundle install 
