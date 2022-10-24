@@ -10,6 +10,5 @@ build:
 run:
 #php artisan serveのphpがない
   # web: php artisan serve --host=0.0.0.0 --port=$PORT
-  web: bundle exec puma -C config/puma.rb
   app: php artisan migrate
   # webのbundleってやつ原因じゃねbundle not foundとか確か出てるし
