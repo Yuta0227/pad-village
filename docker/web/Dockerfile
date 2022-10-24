@@ -19,8 +19,8 @@ COPY --from=node /opt /opt
 # COPY ./etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 # nginx.confを取り込めるようにする
 # COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
-# 80portをroot以外で待ち受けられるようにする
-EXPOSE 80
+# 8080portをroot以外で待ち受けられるようにする
+EXPOSE 8080
 # super user privilegesを与えない
 USER nginx
 
