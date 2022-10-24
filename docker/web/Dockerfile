@@ -21,7 +21,5 @@ COPY ./etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 # nginx.confを取り込めるようにする
 COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# CMD /bin/bash -c "envsubst '\"$PORT"' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf" && 'nginx -g daemon off'
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 WORKDIR /work/backend
  

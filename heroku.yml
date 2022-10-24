@@ -9,6 +9,6 @@ build:
     db: ./docker/db/Dockerfile
 run:
 #php artisan serveのphpがない
-  # web: php artisan serve --host=0.0.0.0 --port=$PORT
+  web: /bin/sh -c "envsubst < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
   app: php artisan migrate
   # webのbundleってやつ原因じゃねbundle not foundとか確か出てるし
