@@ -1,8 +1,8 @@
 FROM node:14.2-alpine as node
 FROM nginx:1.18-alpine
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
-SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
-# SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
+# SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
+SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
 
 
 ENV TZ=UTC
