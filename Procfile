@@ -1,3 +1,3 @@
-web: ./src/vendor/bin/heroku-php-nginx -C .heroku/nginx/nginx.conf ./src/public/
+web: ./src/vendor/bin/heroku-php-nginx ./src/public/
 app: 
 db:
