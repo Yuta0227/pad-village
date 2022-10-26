@@ -35,3 +35,6 @@ RUN apt-get -y update && \
 COPY ./usr/local/etc/php/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend
+
+# herokuで立ち上げるとき?appコンテナも/bin/shになっていてphpコマンドが使えないためbashに変更する
+# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
