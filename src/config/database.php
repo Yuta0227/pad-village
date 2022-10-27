@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 //https://mysql.jawsdb.com/resource/dashboardからとってくる
-$db=parse_url('mysql://lp6bdmsdfdba4mvm:yvu91dfo87o7jd3k@r98du2bxwqkq3shg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/zy1d6tlgdehbtr19');
+$db=parse_url('mysql://q5zzo13cah7ugup9:ag6xxecye81mcmtp@r98du2bxwqkq3shg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/bmfj780hnydjt1ru');
 
 return [
 
