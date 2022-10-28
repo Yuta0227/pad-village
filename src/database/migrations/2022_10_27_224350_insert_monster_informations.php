@@ -14,6 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
+        //データベースに保存されているデータを変数にいれて差分のみ挿入できるようにしないと仮にモンポの情報をaddcolumnしたとしても上書きされるという悪夢
         $url = storage_path() . '/json/monster_data.json';
         $json_string = file_get_contents($url);
         $monster_json = json_decode($json_string, true);
