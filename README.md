@@ -16,7 +16,7 @@
 - トレード掲示板のスレッドへの返信
 
 ## URL
-[パズ村](pad-village.herokuapp.com)
+[パズ村](https://pad-village.herokuapp.com)
 
 ## テスト用アカウント
 メールアドレス：pad-village-test@gmail.com  
