@@ -27,7 +27,6 @@ class TradeBoardTest extends TestCase
     {
         parent::setUp();
         $this->authUser = User::factory()->create();
-        $this->seed(MonstersTableSeeder::class);
         $this->seed(UsersTableSeeder::class);
         $this->seed(TradeBoardPostsTableSeeder::class);
         $this->seed(TradePostRequestsTableSeeder::class);
