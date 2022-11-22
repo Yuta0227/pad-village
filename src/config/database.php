@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Str;
-//https://mysql.jawsdb.com/resource/dashboardからとってくる
-$db=parse_url('mysql://q5zzo13cah7ugup9:ag6xxecye81mcmtp@r98du2bxwqkq3shg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/bmfj780hnydjt1ru');
 
 return [
 
@@ -48,11 +46,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => $db['host'],
+            'host' => env('DB_HOST'),
             'port' => env('DB_PORT', '3306'),
-            'database' => ltrim($db["path"],'/'),
-            'username' => $db['user'],
-            'password' => $db['pass'],
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
