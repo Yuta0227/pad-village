@@ -3,11 +3,11 @@ version: "3"
 services:
   db:
     build:
-      context: ./docker/db
+      context: ./db
     ports:
       - 3306:3306
     volumes:
-      - ./docker/db/var/lib/mysql:/var/lib/mysql
+      - ./db/var/lib/mysql:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=laravel
       - MYSQL_USER=laravel
@@ -16,20 +16,20 @@ services:
     platform: linux/x86_64
   app:
     build:
-      context: ./docker/app
+      context: ./app
     ports:
       - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
     volumes:
-      - ./src:/work/backend
-    # depends_on: ["db"]
+      - ../src:/work/backend
+    depends_on: ["db"]
   web:
     build:
-      context: ./docker/web
+      context: ./web
     ports:
       - 80:80
     volumes:
-      - ./src:/work/backend
-    # depends_on: ["app"]
+      - ../src:/work/backend
+    depends_on: ["app"]
   mailhog:
     image: mailhog/mailhog
     ports:
