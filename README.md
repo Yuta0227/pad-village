@@ -22,6 +22,23 @@ Laravel, MySQL, Tailwind CSS
   - スレッドへの交渉
   - スレッドへの返信
 
+## codespacesでの立ち上げ方
+1. codespacesを開く
+2. cd src
+3. cp .env.example .env
+4. .envのAPP_URLを"<codespacesを開いた時のURLの.github.devの前>-80.app.github.dev"に変更
+5. cd ..
+6. cd docker
+7.  docker compose up -d
+8. docker compose exec app bash
+9. composer install
+10. php artisan key:generate
+11. php artisan migrate --seed
+
+##  管理者権限ユーザーログイン情報
+email:test@gmail.com
+password:password
+
 ## 利用方法
 ### タイムラインに投稿
 1. 村に入る
