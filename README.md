@@ -22,13 +22,6 @@ Laravel, MySQL, Tailwind CSS
   - スレッドへの交渉
   - スレッドへの返信
 
-## URL
-[パズ村](https://pad-village.herokuapp.com)
-
-## テスト用アカウント
-メールアドレス：pad-village-test@gmail.com  
-パスワード：password
-
 ## 利用方法
 ### タイムラインに投稿
 1. 村に入る
